@@ -37,5 +37,7 @@ struct Laser
     // paddle (false).
     bool              live_;
 
+    ge211::Dimensions bullet_;
+
 };
 

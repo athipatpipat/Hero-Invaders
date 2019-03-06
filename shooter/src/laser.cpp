@@ -10,23 +10,30 @@ static ge211::Position above_block(Block const& block,
 {
     ge211::Position pos = block.top_left();
     pos = pos.right_by((.5)*(block.width));
-    pos = pos.up_by(1 + geometry.ball_radius);
+    pos = pos.up_by(1 + geometry.laser_dims_.height/2);
     return pos;
 }
 
-Laser::Laser(Block const& paddle, Geometry const& geometry)
+/*Laser::Laser(Block const& paddle, Geometry const& geometry)
         : radius_   (geometry.ball_radius)
         , velocity_ (geometry.ball_velocity0)
         , center_   (above_block(paddle, geometry))
         , live_     (false)
-    {}
+    {}*/
+
+Laser::Laser(Block const& paddle, Geometry const& geometry)
+        : bullet_   (geometry.laser_dims_)
+        , velocity_ (geometry.laser_velocity0)
+        , center_   (above_block(paddle, geometry))
+        , live_     (false)
+{}
 
 
 ge211::Position Laser::top_left() const
 {
     ge211::Position pos = center_;
 
-    pos = pos.up_by(radius_).left_by(radius_);
+    pos = pos.up_by(bullet_.height/2).left_by(bullet_.width/2);
     return pos;
 }
 
@@ -34,7 +41,7 @@ ge211::Position Laser::top_left() const
 //Check if laser has hit top of the screen
 bool Laser::hits_top(Geometry const&) const
 {
-    if((center_.y - radius_) < 0)
+    if((center_.y - bullet_.height/2) < 0)
         return true;
     else
         return false;
@@ -49,10 +56,18 @@ Laser Laser::next() const
 }
 
 
-//Check if hero has been hit
+/*//Check if hero has been hit
 bool Laser::hits_hero(Block const& block) const
 {
     if((center_.x + radius_) < block.x || (block.x + block.width) < (center_.x - radius_) || (center_.y + radius_) < block.y || (block.y+block.height) < (center_.y - radius_))
+        return false;
+    else
+        return true;
+}*/
+
+bool Laser::hits_hero(Block const& block) const
+{
+    if((center_.x + bullet_.width/2) < block.x || (block.x + block.width) < (center_.x - bullet_.width/2) || (center_.y +  bullet_.height/2) < block.y || (block.y+block.height) < (center_.y - bullet_.height/2))
         return false;
     else
         return true;

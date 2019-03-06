@@ -111,6 +111,9 @@ struct Ui : ge211::Abstract_game
             ball_sprite_    {model_.geometry_.ball_radius,  ball_color};
 
     ge211::Rectangle_sprite const
+            laser_sprite_ {model_.geometry_.laser_dims_, ball_color};
+
+    ge211::Rectangle_sprite const
             player_sprite_  {model_.geometry_.player_dims_, paddle_color};
 
     ge211::Rectangle_sprite const

@@ -11,10 +11,11 @@ Geometry::Geometry() noexcept
         , hero_depth    {  300 }
         , bottom_margin  {   50 }
         , hero_spacing  {   10,   5 }
-        , ball_velocity0 {    3, -10 }
+        , laser_velocity0 {    3, -10 }
         , scene_dims     { 1024, 768 }
         , player_dims_   {  100,  20 }
         , ball_radius    {    5 }
+        , laser_dims_ {5,15}
 { }
 
 ge211::Position Geometry::paddle_top_left0() const noexcept

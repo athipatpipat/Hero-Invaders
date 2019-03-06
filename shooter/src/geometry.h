@@ -23,6 +23,9 @@ struct Geometry
     // heroes:
     ge211::Dimensions hero_spacing;
 
+    // Dimension of laser
+    ge211::Dimensions laser_dims_;
+
     // Number of columns of heroes:
     int hero_cols;
 
@@ -44,7 +47,7 @@ struct Geometry
 
     int ball_radius;
 
-    ge211::Dimensions ball_velocity0;
+    ge211::Dimensions laser_velocity0;
     // The initial position of the paddle. This is a member function because
     // it's computed from the other properties.
     ge211::Position paddle_top_left0() const noexcept;
