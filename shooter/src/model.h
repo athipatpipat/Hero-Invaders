@@ -110,6 +110,7 @@ struct Model
     //Moves hero
     void update_hero();
 
+    void laser_to();
     ///
     /// MEMBER VARIABLES
     ///

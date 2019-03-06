@@ -61,6 +61,8 @@ struct Ui : ge211::Abstract_game
     //  - On ' ', tells the model to launch the ball.
     void on_key(ge211::Key) override;
 
+
+
     void on_frame(double dt) override;
     // Defines how the game responds to mouse clicks (which is by telling
     // the model to launch the ball).

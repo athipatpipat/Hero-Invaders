@@ -16,8 +16,8 @@ Model::Model(Geometry const& geometry)
     for(size_t i = 0; i < geometry_.hero_cols; i++){
         for(size_t j = 0; j < geometry_.hero_rows; j++){
             Block hero;
-            size_t x = (j * (geometry_.hero_spacing.width + geometry_.hero_dims().width));
-            size_t y = (i * (geometry_.hero_spacing.height + geometry_.hero_dims().height));
+            size_t x = (i * (geometry_.hero_spacing.width + geometry_.hero_dims().width));
+            size_t y = (j * (geometry_.hero_spacing.height + geometry_.hero_dims().height));
             hero= Block::from_top_left({(geometry_.side_margin + x), (geometry_.top_margin + y)}, geometry_.hero_dims());
             heroes_.push_back(hero);
         }
@@ -31,12 +31,22 @@ void Model::launch()
 
 void Model::move_player_right(){
     paddle_.x += 10;
+    if(!ball_.live_)
+        ball_.center_.x += 10;
 }
 
 void Model::move_player_left() {
     paddle_.x -= 10;
+    if(!ball_.live_)
+        ball_.center_.x -= 10;
 }
 
+void Model::laser_to()
+{
+    if (!ball_.live_) {
+        ball_ = Laser(paddle_, geometry_);
+    }
+}
 
 //moving heroes
 void Model::update(){
