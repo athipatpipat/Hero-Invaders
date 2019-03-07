@@ -26,12 +26,13 @@ void Ui::draw(ge211::Sprite_set& sprites)
     auto str_score = std::to_string(model_.score);
     score_ = ge211::Text_sprite(str_score,ge211::Font("sans.ttf",20));
 
-    sprites.add_sprite(score_,model_.geometry_.paddle_top_left0());
+    sprites.add_sprite(score_,model_.geometry_.score_board);
 
 
     for(Block brick:model_.heroes_ ){
-
-        sprites.add_sprite(brick_sprite_, ge211::Position(brick.x,brick.y));
+        //make an if statement to check type of hero
+        //sprites.add_sprite(brick_sprite_, ge211::Position(brick.x,brick.y));
+        sprites.add_sprite(batman_, ge211::Position(brick.x,brick.y));
     }
 }
 

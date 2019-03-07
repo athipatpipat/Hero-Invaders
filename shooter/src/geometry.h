@@ -44,6 +44,8 @@ struct Geometry
 
     int ball_radius;
 
+    ge211::Position score_board;
+
     ge211::Dimensions laser_velocity0;
 
     // The initial position of the player. This is a member function because
