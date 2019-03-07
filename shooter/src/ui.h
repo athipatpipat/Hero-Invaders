@@ -3,6 +3,13 @@
 #include "model.h"
 #include <ge211.h>
 
+
+
+///
+/// VIEW CONSTANTS
+///
+
+
 using Block = ge211::Rectangle;
 // These constants are defined in `ui.cpp` but declared here so that
 // we care refer to them when initializing the sprites below.
@@ -44,7 +51,7 @@ struct Ui : ge211::Abstract_game
     // reference to the `Ui` constructor.
     Model& model_;
 
-   
+
 
     ge211::Circle_sprite    const
             ball_sprite_    {model_.geometry_.ball_radius,  ball_color};
@@ -57,4 +64,13 @@ struct Ui : ge211::Abstract_game
 
     ge211::Rectangle_sprite const
             brick_sprite_   {model_.geometry_.hero_dims(), brick_color};
+
+
+    ge211::Image_sprite batman_{"batman.png"};
+      /*
+    ge211::Image_sprite deadpool_{"deadpool.png"};
+    ge211::Image_sprite turtle_{"turtle.png"};
+    ge211::Image_sprite thanos_{"thanos.png"};
+
+     */
 };
