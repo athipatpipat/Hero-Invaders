@@ -29,7 +29,7 @@ Laser::Laser(Block const& paddle, Geometry const& geometry)
 {}
 
 
-ge211::Position Laser::top_left() const
+ge211::Position Laser::top_left() const //since we are using this to draw, we must change this as position of player changes
 {
     ge211::Position pos = center_;
 

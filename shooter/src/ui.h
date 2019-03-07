@@ -3,6 +3,7 @@
 #include "model.h"
 #include <ge211.h>
 
+
 ///
 /// VIEW CONSTANTS
 ///
@@ -120,4 +121,13 @@ struct Ui : ge211::Abstract_game
 
     ge211::Rectangle_sprite const
             brick_sprite_   {model_.geometry_.hero_dims(), brick_color};
+
+
+    ge211::Image_sprite batman_{"batman.png"};
+      /*
+    ge211::Image_sprite deadpool_{"deadpool.png"};
+    ge211::Image_sprite turtle_{"turtle.png"};
+    ge211::Image_sprite thanos_{"thanos.png"};
+
+     */
 };
