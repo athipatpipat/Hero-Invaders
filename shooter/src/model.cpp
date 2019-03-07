@@ -49,6 +49,7 @@ void Model::update(){
             return;
         }
         if(newball.destroy_hero(heroes_)) {
+            score += 10;
             ball_ = Laser(paddle_, geometry_);
             return;
         }
