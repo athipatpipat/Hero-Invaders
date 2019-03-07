@@ -27,14 +27,13 @@ struct Laser
     // The radius of the ball.
     int               radius_;
 
-    // The velocity of the ball in pixels per tick.
+    // The velocity of the laser in pixels per tick.
     ge211::Dimensions velocity_;
 
     // The position of the center of the ball.
     ge211::Position   center_;
 
-    // Whether the ball is moving freely (true) or stuck to the top of the
-    // paddle (false).
+    // Whether the laser is moving freely (true) or has not been shot yet (false).
     bool              live_;
 
     ge211::Dimensions bullet_;

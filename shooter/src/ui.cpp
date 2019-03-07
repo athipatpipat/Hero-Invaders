@@ -1,17 +1,9 @@
-// YOU DEFINITELY NEED TO MODIFY THIS FILE.
-
 #include "ui.h"
 
-///
-/// VIEW CONSTANTS
-///
 
 ge211::Color const paddle_color  {255, 255, 127};
 ge211::Color const brick_color   {100, 100, 100};
 ge211::Color const ball_color    {255, 127, 127};
-///
-/// VIEW FUNCTIONS
-///
 
 // Data members that are references cannot be initialized by assignment
 // in the constructor body and must be initialized in a member
@@ -34,15 +26,9 @@ void Ui::draw(ge211::Sprite_set& sprites)
     for(Block brick:model_.heroes_ ){
 
         sprites.add_sprite(brick_sprite_, ge211::Position(brick.x,brick.y));
-
     }
-
-
 }
 
-///
-/// CONTROLLER FUNCTIONS
-///
 
 void Ui::on_key(ge211::Key key)
 {
@@ -54,14 +40,12 @@ void Ui::on_key(ge211::Key key)
         model_.launch();
     }
 
-
 }
 
 void Ui::on_frame(double)
 {
     model_.update();
     model_.update_hero();
-
 }
 
 

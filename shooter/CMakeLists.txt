@@ -20,12 +20,12 @@ add_program(shooter
         ${MODEL_COMMON})
 target_link_libraries(shooter ge211)
 
-# Adds a test program named `ball_test` built from test/ball_test.cpp
+# Adds a test program named `laser_test` built from test/laser_test.cpp
 # and the common model files.
-add_test_program(ball_test
-        test/ball_test.cpp
+add_test_program(laser_test
+        test/laser_test.cpp
         ${MODEL_COMMON})
-target_link_libraries(ball_test ge211)
+target_link_libraries(laser_test ge211)
 
 # Adds a test program named `model_test` built from test/model_test.cpp
 # and the common model files.
