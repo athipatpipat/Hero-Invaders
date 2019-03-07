@@ -1,8 +1,4 @@
-// YOU DEFINITELY NEED TO MODIFY THIS FILE.
-
 #include "model.h"
-
-
 
 Model::Model(Geometry const& geometry)
         : geometry_(geometry)
@@ -41,14 +37,7 @@ void Model::move_player_left() {
         ball_.center_.x -= 10;
 }
 
-void Model::laser_to()
-{
-    if (!ball_.live_) {
-        ball_ = Laser(paddle_, geometry_);
-    }
-}
 
-//moving heroes
 void Model::update(){
 
     if(!ball_.live_)
@@ -66,10 +55,6 @@ void Model::update(){
 
         ball_ = ball_.next();
     }
-
-
-
-
 
 }
 
@@ -104,9 +89,7 @@ void Model::update_hero(){
     }
 }
 
-//Test commit
 
-//ge211::Font sans("sans.ttf",30);
 
 
 

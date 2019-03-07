@@ -24,11 +24,10 @@ ge211::Position Geometry::paddle_top_left0() const noexcept
              scene_dims.height - bottom_margin - player_dims_.height };
 }
 
-// Computes how large each brick can be (in a given dimension), given the
-// total number of pixels available in that dimension, the number of bricks
+// Computes how large each hero can be (in a given dimension), given the
+// total number of pixels available in that dimension, the number of heroes
 // in that dimensions, and the number of space pixels to leave in between.
-//
-// PRECONDITION: divisor > 0
+
 static int div_w_spacing(int total, int divisor, int space)
 {
     if (divisor > 0)
@@ -37,7 +36,7 @@ static int div_w_spacing(int total, int divisor, int space)
     throw ge211::Client_logic_error("need at least 1 row & 1 column");
 }
 
-// Computes the dimensions of each brick from the other parameters.
+// Computes the dimensions of each hero from the other parameters.
 ge211::Dimensions Geometry::hero_dims() const noexcept
 {
     ge211::Dimensions field{scene_dims.width - 2 * side_margin,
