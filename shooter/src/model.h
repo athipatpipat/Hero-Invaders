@@ -26,9 +26,6 @@ public:
     int type;
 
 
-
-    Hero& operator=(const Hero&)=default;
-
 };
 
 
@@ -37,6 +34,7 @@ public:
 // The logical state of the game.
 struct Model
 {
+    Laser               ball_;
     ///
     /// CONSTRUCTOR
     ///
@@ -85,7 +83,7 @@ struct Model
 
     Geometry const     geometry_;
 
-    std::vector<Block> heroes_;
+    std::vector<Hero> heroes_;
 
     Block              paddle_;
 
@@ -96,6 +94,8 @@ struct Model
 
     size_t              score;
 
-    Laser               ball_;
+
+
+    size_t              counter;
 };
 

@@ -2,7 +2,6 @@
 #include <iostream>
 
 
-
 Model::Model(Geometry const& geometry)
         : geometry_(geometry)
         , hero_direction(true)
@@ -10,6 +9,7 @@ Model::Model(Geometry const& geometry)
         , paddle_(Block::from_top_left(geometry_.paddle_top_left0(),
                                        geometry_.player_dims_))
         , ball_(paddle_, geometry_)
+        , counter(0)
 
 {
     /*
@@ -26,28 +26,28 @@ Model::Model(Geometry const& geometry)
     */
 
     for(size_t j = 0; j < geometry_.hero_rows; j++){
-        int counter = 0;
         for(size_t i = 0; i < geometry_.hero_cols; i++){
-            Hero hero;
+            Block hero;
 
 
             int x = (i * (geometry_.hero_spacing.width + geometry_.hero_dims().width));
             int y = (j * (geometry_.hero_spacing.height + geometry_.hero_dims().height));
-            hero = Hero::from_top_left({(geometry_.side_margin + x), (geometry_.top_margin + y)}, geometry_.hero_dims());
+            hero = Block::from_top_left({(geometry_.side_margin + x), (geometry_.top_margin + y)}, geometry_.hero_dims());
+            Hero* new_hero = static_cast<Hero*>(&hero);
             switch(counter){
-                case 0: hero.type = 1;
+                case 0: new_hero->type = 1;
                 case 1:
-                case 2: hero.type = 2;
+                case 2: new_hero->type = 2;
                 case 3:
-                case 4: hero.type = 3;
+                case 4: new_hero->type = 3;
             }
-            heroes_.push_back(hero);
+            heroes_.push_back(*new_hero);
+            delete new_hero;
             //change hero type here
         }
         counter++;
     }
 }
-
 
 
 void Model::launch()
@@ -79,7 +79,7 @@ void Model::update(){
             return;
         }
         if(newball.destroy_hero(heroes_)) {
-            //have an if statement to check which type of hero has been destroyed to allocated correct points
+
             score += 10;
             ball_ = Laser(paddle_, geometry_);
             return;

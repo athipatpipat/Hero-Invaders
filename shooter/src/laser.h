@@ -5,6 +5,7 @@
 #pragma once
 
 #include "geometry.h"
+#include "model.h"
 #include <ge211.h>
 
 using Block = ge211::Rectangle;
@@ -19,8 +20,8 @@ struct Laser
     ge211::Position top_left() const;
     bool hits_top(Geometry const&) const;
     Laser next() const;
-    bool hits_hero(Block const& block) const;
-    bool destroy_hero(std::vector<Block>& heroes) const;
+    bool hits_hero(Hero const& block) const;
+    bool destroy_hero(std::vector<Hero>& heroes, int& score) const;
 
 
     ///Member Variables

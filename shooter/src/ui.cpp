@@ -31,8 +31,8 @@ void Ui::draw(ge211::Sprite_set& sprites)
 
     for(Block brick:model_.heroes_ ){
         //make an if statement to check type of hero
-        //sprites.add_sprite(brick_sprite_, ge211::Position(brick.x,brick.y));
-        sprites.add_sprite(batman_, ge211::Position(brick.x,brick.y));
+        sprites.add_sprite(brick_sprite_, ge211::Position(brick.x,brick.y));
+        //sprites.add_sprite(batman_, ge211::Position(brick.x,brick.y));
     }
 }
 

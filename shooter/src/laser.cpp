@@ -65,7 +65,7 @@ bool Laser::hits_hero(Block const& block) const
         return true;
 }*/
 
-bool Laser::hits_hero(Block const& block) const
+bool Laser::hits_hero(Hero const& block) const
 {
     if((center_.x + bullet_.width/2) < block.x || (block.x + block.width) < (center_.x - bullet_.width/2) || (center_.y +  bullet_.height/2) < block.y || (block.y+block.height) < (center_.y - bullet_.height/2))
         return false;
@@ -74,11 +74,18 @@ bool Laser::hits_hero(Block const& block) const
 }
 
 //Destroy hero that has been hit by laser
-bool Laser::destroy_hero(std::vector<Block>& heroes) const
+bool Laser::destroy_hero(std::vector<Hero>& heroes, int &score) const
 {
-    for(ge211::Rectangle &brick : heroes ){
-        if(hits_hero(brick)){
-            std::swap(brick, heroes.back());
+    for(Hero &hero : heroes ){
+        if(hits_hero(hero)){
+            /*
+            switch(hero.type){
+                case 1: score += 30;
+                case 2: score += 20;
+                case 3: score += 10;
+            }
+             */
+            std::swap(hero, heroes.back());
             heroes.pop_back();
             return true;
         }
