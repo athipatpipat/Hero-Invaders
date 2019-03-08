@@ -35,10 +35,13 @@ Model::Model(Geometry const& geometry)
             Hero* new_hero = static_cast<Hero*>(&hero);
             switch(counter){
                 case 0: new_hero->type = 1;
+                break;
                 case 1:
                 case 2: new_hero->type = 2;
+                break;
                 case 3:
                 case 4: new_hero->type = 3;
+                break;
             }
             heroes_.push_back(*new_hero);
             delete new_hero;

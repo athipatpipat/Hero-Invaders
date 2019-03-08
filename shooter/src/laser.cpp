@@ -81,8 +81,11 @@ bool Laser::destroy_hero(std::vector<Hero>& heroes, size_t& score) const
 
             switch(hero.type){
                 case 1: score += 30;
+                break;
                 case 2: score += 20;
+                break;
                 case 3: score += 10;
+                break;
             }
 
             std::swap(hero, heroes.back());
