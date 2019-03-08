@@ -19,20 +19,27 @@ ge211::Dimensions Ui::initial_window_dimensions() const
 
 void Ui::draw(ge211::Sprite_set& sprites)
 {
+    ge211::Transform scale;
+    scale.set_scale_x(sprite_scale_width);
+    scale.set_scale_y(sprite_scale_height);
     //sprites.add_sprite(ball_sprite_, model_.ball_.top_left());
     sprites.add_sprite(laser_sprite_, model_.ball_.top_left());
     sprites.add_sprite(player_sprite_, model_.paddle_.top_left());
-    //sprites.add_sprite(batman_, model_.paddle_.top_left());
     auto str_score = std::to_string(model_.score);
     score_ = ge211::Text_sprite(str_score,ge211::Font("sans.ttf",20));
 
     sprites.add_sprite(score_,model_.geometry_.score_board);
 
 
-    for(Block brick:model_.heroes_ ){
+    for(Hero hero:model_.heroes_ ){
         //make an if statement to check type of hero
-        sprites.add_sprite(brick_sprite_, ge211::Position(brick.x,brick.y));
-        //sprites.add_sprite(batman_, ge211::Position(brick.x,brick.y));
+        /*sprites.add_sprite(brick_sprite_, ge211::Position(hero.x,hero.y));*/
+      if(hero.type == 1)
+          sprites.add_sprite(batman_, ge211::Position(hero.x,hero.y), 0, scale);
+      if(hero.type == 2)
+          sprites.add_sprite(deadpool_, ge211::Position(hero.x,hero.y), 0, scale);
+      if(hero.type == 3)
+          sprites.add_sprite(turtle_, ge211::Position(hero.x,hero.y), 0, scale);
     }
 }
 
