@@ -5,10 +5,19 @@
 #pragma once
 
 #include "geometry.h"
-#include "model.h"
+
 #include <ge211.h>
 
 using Block = ge211::Rectangle;
+
+class Hero : public ge211::Rectangle {
+public:
+
+    int type;
+
+};
+
+
 struct Laser
 {
     ///Constructor
@@ -21,7 +30,7 @@ struct Laser
     bool hits_top(Geometry const&) const;
     Laser next() const;
     bool hits_hero(Hero const& block) const;
-    bool destroy_hero(std::vector<Hero>& heroes) const;
+    bool destroy_hero(std::vector<Hero>& heroes, size_t & score) const;
 
 
     ///Member Variables

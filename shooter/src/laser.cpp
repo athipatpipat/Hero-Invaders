@@ -74,17 +74,17 @@ bool Laser::hits_hero(Hero const& block) const
 }
 
 //Destroy hero that has been hit by laser
-bool Laser::destroy_hero(std::vector<Hero>& heroes) const
+bool Laser::destroy_hero(std::vector<Hero>& heroes, size_t& score) const
 {
     for(Hero &hero : heroes ){
         if(hits_hero(hero)){
-            /*
+
             switch(hero.type){
                 case 1: score += 30;
                 case 2: score += 20;
                 case 3: score += 10;
             }
-             */
+
             std::swap(hero, heroes.back());
             heroes.pop_back();
             return true;

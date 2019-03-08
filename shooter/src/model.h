@@ -17,16 +17,8 @@
 #include <vector>
 #include "laser.h"
 
-using Block = ge211::Rectangle;
-//override block and add hero type to it
-
-class Hero : public ge211::Rectangle {
-public:
-
-    int type;
 
 
-};
 
 
 
@@ -34,7 +26,7 @@ public:
 // The logical state of the game.
 struct Model
 {
-    Laser               ball_;
+
     ///
     /// CONSTRUCTOR
     ///
@@ -80,7 +72,7 @@ struct Model
     /// MEMBER VARIABLES
     ///
 
-
+    Laser               ball_;
     Geometry const     geometry_;
 
     std::vector<Hero> heroes_;

@@ -1,5 +1,4 @@
 #include "model.h"
-#include <iostream>
 
 
 Model::Model(Geometry const& geometry)
@@ -78,9 +77,7 @@ void Model::update(){
             ball_ = Laser(paddle_, geometry_);
             return;
         }
-        if(newball.destroy_hero(heroes_)) {
-
-            score += 10;
+        if(newball.destroy_hero(heroes_,score)) {
             ball_ = Laser(paddle_, geometry_);
             return;
         }
