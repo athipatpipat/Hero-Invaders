@@ -86,7 +86,7 @@ struct Model
 
     size_t              score;
 
-
+    float             hero_velocity;
 
     size_t              counter;
 };

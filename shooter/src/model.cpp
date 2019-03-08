@@ -9,6 +9,7 @@ Model::Model(Geometry const& geometry)
                                        geometry_.player_dims_))
         , ball_(paddle_, geometry_)
         , counter(0)
+        , hero_velocity(2)
 
 {
     /*
@@ -80,7 +81,7 @@ void Model::update(){
             ball_ = Laser(paddle_, geometry_);
             return;
         }
-        if(newball.destroy_hero(heroes_,score)) {
+        if(newball.destroy_hero(heroes_,score, hero_velocity)) {
             ball_ = Laser(paddle_, geometry_);
             return;
         }
@@ -94,13 +95,13 @@ void Model::update_hero(){
 
     if(hero_direction){
         for(Block& hero:heroes_ ){
-            hero.x += 2;
+            hero.x += hero_velocity;
         }
     }
 
     if(!hero_direction){
         for(Block& hero:heroes_ ){
-            hero.x -= 2;
+            hero.x -= hero_velocity;
         }
     }
 
