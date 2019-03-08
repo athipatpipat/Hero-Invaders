@@ -21,7 +21,7 @@ struct Laser
     bool hits_top(Geometry const&) const;
     Laser next() const;
     bool hits_hero(Hero const& block) const;
-    bool destroy_hero(std::vector<Hero>& heroes, int& score) const;
+    bool destroy_hero(std::vector<Hero>& heroes) const;
 
 
     ///Member Variables
