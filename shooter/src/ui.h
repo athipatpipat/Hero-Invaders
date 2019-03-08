@@ -66,16 +66,18 @@ struct Ui : ge211::Abstract_game
             brick_sprite_   {model_.geometry_.hero_dims(), brick_color};
 
     ge211::Image_sprite batman_{"batman.png"};
-    double batman_scale = .2;
+    double batman_scale = .15;
 
     ge211::Text_sprite score_;
     //= ge211::Text_sprite("Hello",ge211::Font("sans.ttf",20));
-      /*
+
     ge211::Image_sprite deadpool_{"deadpool.png"};
+    double deadpool_scale = .15;
     ge211::Image_sprite turtle_{"turtle.png"};
+    double turtle_scale = .15;
     ge211::Image_sprite thanos_{"thanos.png"};
 
-     */
+
 
 
 };
