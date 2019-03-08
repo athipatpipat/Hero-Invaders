@@ -22,7 +22,9 @@ void Ui::draw(ge211::Sprite_set& sprites)
     //sprites.add_sprite(ball_sprite_, model_.ball_.top_left());
     sprites.add_sprite(laser_sprite_, model_.ball_.top_left());
     sprites.add_sprite(player_sprite_, model_.paddle_.top_left());
-    //sprites.add_sprite(batman_, model_.paddle_.top_left());
+    ge211::Transform scale;
+    scale.set_scale(batman_scale);
+    sprites.add_sprite(batman_, {400, 300}, 0, scale);
     auto str_score = std::to_string(model_.score);
     score_ = ge211::Text_sprite(str_score,ge211::Font("sans.ttf",20));
 
