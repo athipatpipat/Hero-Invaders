@@ -27,26 +27,23 @@ Model::Model(Geometry const& geometry)
 
     for(size_t j = 0; j < geometry_.hero_rows; j++){
         for(size_t i = 0; i < geometry_.hero_cols; i++){
-            Block hero;
-
-
+            Hero hero;
             int x = (i * (geometry_.hero_spacing.width + geometry_.hero_dims().width));
             int y = (j * (geometry_.hero_spacing.height + geometry_.hero_dims().height));
-            hero = Block::from_top_left({(geometry_.side_margin + x), (geometry_.top_margin + y)}, geometry_.hero_dims());
-            Hero* new_hero = static_cast<Hero*>(&hero);
+            hero = Hero::from_top_left({(geometry_.side_margin + x), (geometry_.top_margin + y)}, geometry_.hero_dims());
+
             switch(counter){
-                case 0: new_hero->type = 1;
+                case 0: hero.type = 1;
                 break;
                 case 1:
-                case 2: new_hero->type = 2;
+                case 2: hero.type = 2;
                 break;
                 case 3:
-                case 4: new_hero->type = 3;
+                case 4: hero.type = 3;
                 break;
             }
-            heroes_.push_back(*new_hero);
-            delete new_hero;
-            //change hero type here
+            heroes_.push_back(hero);
+           
         }
         counter++;
     }
@@ -94,28 +91,28 @@ void Model::update(){
 void Model::update_hero(){
 
     if(hero_direction){
-        for(Block& hero:heroes_ ){
+        for(Hero& hero:heroes_ ){
             hero.x += hero_velocity;
         }
     }
 
     if(!hero_direction){
-        for(Block& hero:heroes_ ){
+        for(Hero& hero:heroes_ ){
             hero.x -= hero_velocity;
         }
     }
 
     //check if any hero have gone past right side
-    for(Block& hero:heroes_){
+    for(Hero& hero:heroes_){
         if(hero.x + hero.width > geometry_.scene_dims.width){
             hero_direction = false;
-            for(Block& hero:heroes_){
+            for(Hero& hero:heroes_){
                 hero.y += 3;
             }
         }
         if(hero.x < 0){
             hero_direction = true;
-            for(Block& hero:heroes_){
+            for(Hero& hero:heroes_){
                 hero.y += 3;
             }
         }

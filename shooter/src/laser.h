@@ -8,12 +8,25 @@
 
 #include <ge211.h>
 
+using Position = ge211:: Basic_position<float>;
+using Dimensions = ge211:: Basic_dimensions<float>;
+using Rectangle = ge211:: Basic_rectangle<float>;
+
 using Block = ge211::Rectangle;
 
-class Hero : public ge211::Rectangle {
+class Hero{
 public:
 
+    float x;
+    float y;
+    float width;
+    float height;
+
     int type;
+
+    static Hero from_top_left(Position tl, Dimensions dims){
+        return {tl.x, tl.y, dims.width, dims.height};
+    }
 
 };
 

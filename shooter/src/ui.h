@@ -62,8 +62,8 @@ struct Ui : ge211::Abstract_game
     ge211::Rectangle_sprite const
             player_sprite_  {model_.geometry_.player_dims_, paddle_color};
 
-    ge211::Rectangle_sprite const
-            brick_sprite_   {model_.geometry_.hero_dims(), brick_color};
+    //ge211::Rectangle_sprite const
+     //       brick_sprite_   {model_.geometry_.hero_dims(), brick_color};
 
     ge211::Image_sprite batman_{"batman.png"};
     double sprite_scale_width = .2;

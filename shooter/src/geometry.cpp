@@ -39,7 +39,7 @@ static int div_w_spacing(int total, int divisor, int space)
 }
 
 // Computes the dimensions of each hero from the other parameters.
-ge211::Dimensions Geometry::hero_dims() const noexcept
+Dimensions Geometry::hero_dims() const noexcept
 {
     ge211::Dimensions field{scene_dims.width - 2 * side_margin,
                             hero_depth - top_margin};

@@ -2,6 +2,10 @@
 
 #include <ge211.h>
 
+using Position = ge211:: Basic_position<float>;
+using Dimensions = ge211:: Basic_dimensions<float>;
+using Rectangle = ge211:: Basic_rectangle<float>;
+
 struct Geometry
 {
     ///Constructors
@@ -54,6 +58,6 @@ struct Geometry
 
     // The dimensions of each hero. Also computed from the other properties.
 
-    ge211::Dimensions hero_dims() const noexcept;
+    Dimensions hero_dims() const noexcept;
 };
 
