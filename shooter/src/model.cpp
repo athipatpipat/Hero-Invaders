@@ -9,7 +9,7 @@ Model::Model(Geometry const& geometry)
                                        geometry_.player_dims_))
         , ball_(paddle_, geometry_)
         , counter(0)
-        , hero_velocity(2)
+        , hero_velocity(3)
 
 {
     /*
@@ -43,7 +43,7 @@ Model::Model(Geometry const& geometry)
                 break;
             }
             heroes_.push_back(hero);
-           
+
         }
         counter++;
     }
