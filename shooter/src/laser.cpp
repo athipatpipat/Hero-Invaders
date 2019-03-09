@@ -78,7 +78,7 @@ bool Laser::destroy_hero(std::vector<Hero>& heroes, size_t& score, float& veloci
 {
     for(Hero &hero : heroes ){
         if(hits_hero(hero)){
-            velocity += 0.2;
+            velocity += 1;
             switch(hero.type){
                 case 1: score += 30;
                 break;
