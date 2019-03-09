@@ -23,8 +23,11 @@ void Ui::draw(ge211::Sprite_set& sprites)
     scale.set_scale_x(sprite_scale_width);
     scale.set_scale_y(sprite_scale_height);
     //sprites.add_sprite(ball_sprite_, model_.ball_.top_left());
-    sprites.add_sprite(laser_sprite_, model_.ball_.top_left());
-    sprites.add_sprite(player_sprite_, model_.paddle_.top_left());
+    sprites.add_sprite(laser_sprite_, model_.ball_.top_left().up_by(60).left_by(20));
+   /* sprites.add_sprite(player_sprite_, model_.paddle_.top_left());*/
+    ge211::Transform player_scale;
+    player_scale.set_scale(thanos_scale);
+    sprites.add_sprite(thanos_, model_.paddle_.top_left().up_by(75), 0, player_scale);
     auto str_score = std::to_string(model_.score);
     score_ = ge211::Text_sprite(str_score,ge211::Font("sans.ttf",20));
 

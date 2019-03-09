@@ -74,6 +74,7 @@ struct Ui : ge211::Abstract_game
     ge211::Image_sprite deadpool_{"deadpool.png"};
     ge211::Image_sprite turtle_{"turtle.png"};
     ge211::Image_sprite thanos_{"thanos.png"};
+    double thanos_scale = .2;
 
 
 
