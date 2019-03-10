@@ -21,6 +21,7 @@ struct Laser
     ///Constructor
 
     Laser(Block const& paddle, Geometry const&);
+    Laser(Hero const& hero, Geometry const&);
 
 
     ///Member Functions
@@ -32,8 +33,6 @@ struct Laser
 
 
     ///Member Variables
-    // The radius of the ball.
-    int               radius_;
 
     // The velocity of the laser in pixels per tick.
     ge211::Dimensions velocity_;

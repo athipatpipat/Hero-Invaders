@@ -25,5 +25,10 @@ public:
     }
 
 
+    ge211::Position top_left() const
+    {
+        return {x,y+height};
+    }
+
 
 };

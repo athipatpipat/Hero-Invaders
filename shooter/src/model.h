@@ -77,6 +77,8 @@ struct Model
 
     std::vector<Hero> heroes_;
 
+    std::vector<Laser> hero_lasers;
+
     Block              paddle_;
 
     //direction that the heroes are moving.

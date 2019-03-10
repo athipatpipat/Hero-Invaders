@@ -14,12 +14,19 @@ static ge211::Position above_block(Block const& block,
     return pos;
 }
 
-/*Laser::Laser(Block const& paddle, Geometry const& geometry)
-        : radius_   (geometry.ball_radius)
-        , velocity_ (geometry.ball_velocity0)
-        , center_   (above_block(paddle, geometry))
-        , live_     (false)
-    {}*/
+
+static ge211::Position below_block(Hero const& hero,
+                                   Geometry const& geometry)
+{
+    ge211::Position pos = hero.top_left();
+    pos = pos.right_by((.5)*(hero.width));
+    pos = pos.up_by(1 + geometry.laser_dims_.height/2);
+    return pos;
+}
+
+
+
+
 
 Laser::Laser(Block const& paddle, Geometry const& geometry)
         : bullet_   (geometry.laser_dims_)
@@ -27,6 +34,14 @@ Laser::Laser(Block const& paddle, Geometry const& geometry)
         , center_   (above_block(paddle, geometry))
         , live_     (false)
 {}
+
+Laser::Laser(Hero const& hero, Geometry const& geometry)
+        : bullet_   (geometry.laser_dims_)
+        , velocity_ (geometry.laser_velocity0)
+        , center_   (below_block(hero, geometry))
+        , live_     (false)
+{}
+
 
 
 ge211::Position Laser::top_left() const //since we are using this to draw, we must change this as position of player changes
