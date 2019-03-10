@@ -5,6 +5,8 @@
 #include "laser.h"
 #include "geometry.h"
 
+#include <iostream>
+
 static ge211::Position above_block(Block const& block,
                                    Geometry const& geometry)
 {
@@ -37,9 +39,9 @@ Laser::Laser(Block const& paddle, Geometry const& geometry)
 
 Laser::Laser(Hero const& hero, Geometry const& geometry)
         : bullet_   (geometry.laser_dims_)
-        , velocity_ (geometry.laser_velocity0)
+        , velocity_ (geometry.laser_velocity_hero)
         , center_   (below_block(hero, geometry))
-        , live_     (false)
+        , live_     (true)
 {}
 
 
@@ -109,4 +111,19 @@ bool Laser::destroy_hero(std::vector<Hero>& heroes, size_t& score, float& veloci
         }
     }
     return false;
+}
+
+bool Laser::hits_player(Block const& paddle) const
+{
+    if((center_.x + bullet_.width/2 - 20) < paddle.x || (paddle.x + paddle.width) < (center_.x - bullet_.width/2 - 20) || (center_.y +  bullet_.height/2 - 60) < paddle.y || (paddle.y+paddle.height) < (center_.y - bullet_.height/2 - 60))
+        return false;
+    else
+        return true;
+}
+
+bool Laser::destroy_player(Block& paddle) const
+{
+    if(hits_player(paddle)){
+        std::cout << "hit" << "\n";
+    }
 }

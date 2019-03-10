@@ -33,8 +33,12 @@ void Ui::draw(ge211::Sprite_set& sprites)
 
     sprites.add_sprite(score_,model_.geometry_.score_board);
 
+    for(Laser& laser:model_.hero_lasers){
+        sprites.add_sprite(laser_sprite_, laser.center_);
+    }
 
-    for(Hero hero:model_.heroes_ ){
+
+    for(Hero& hero:model_.heroes_ ){
         //make an if statement to check type of hero
         /*sprites.add_sprite(brick_sprite_, ge211::Position(hero.x,hero.y));*/
       if(hero.type == 1)
@@ -63,6 +67,7 @@ void Ui::on_frame(double)
 {
     model_.update();
     model_.update_hero();
+    model_.hero_shoot();
 }
 
 

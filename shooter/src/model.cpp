@@ -43,6 +43,7 @@ Model::Model(Geometry const& geometry)
                 case 4: hero.type = 3;
                 break;
             }
+
             addHero(hero);
             addLaser(laser);
         }
@@ -75,6 +76,7 @@ void Model::update(){
         return;
     else{
         Laser newball = ball_.next();
+
         if(newball.hits_top(geometry_)) {
             ball_ = Laser(paddle_, geometry_);
             return;
@@ -118,6 +120,28 @@ void Model::update_hero(){
             }
         }
     }
+}
+
+void Model::hero_shoot(){
+    for(size_t i=0;i<hero_lasers.size();i++){
+        if(!hero_lasers[i].live_)
+            return;
+        else{
+            Laser new_laser = hero_lasers[i].next();
+
+            if(new_laser.hits_top(geometry_)) {
+                hero_lasers[i] = Laser(heroes_[i], geometry_);
+                return;
+            }
+            if(new_laser.destroy_player(paddle_)) {
+                hero_lasers[i] = Laser(heroes_[i], geometry_);
+                return;
+            }
+
+            hero_lasers[i] = hero_lasers[i].next();
+        }
+    }
+
 }
 
 

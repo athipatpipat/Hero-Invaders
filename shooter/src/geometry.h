@@ -52,6 +52,8 @@ struct Geometry
 
     ge211::Dimensions laser_velocity0;
 
+    ge211::Dimensions laser_velocity_hero;
+
     // The initial position of the player. This is a member function because
     // it's computed from the other properties.
     ge211::Position paddle_top_left0() const noexcept;

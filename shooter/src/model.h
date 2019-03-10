@@ -67,6 +67,8 @@ struct Model
     //Moves hero
     void update_hero();
 
+    void hero_shoot();
+
     std::vector<Hero> heroes_;
 
     std::vector<Laser> hero_lasers;
