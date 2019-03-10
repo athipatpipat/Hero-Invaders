@@ -67,7 +67,21 @@ struct Model
     //Moves hero
     void update_hero();
 
-    void laser_to();
+    std::vector<Hero> heroes_;
+
+    std::vector<Laser> hero_lasers;
+
+    void addHero(Hero &hero) {
+        heroes_.push_back(hero);
+    }
+    void addLaser(Laser &laser) {
+        hero_lasers.push_back(laser);
+    }
+
+
+
+
+
     ///
     /// MEMBER VARIABLES
     ///
@@ -75,9 +89,9 @@ struct Model
     Laser               ball_;
     Geometry const     geometry_;
 
-    std::vector<Hero> heroes_;
 
-    std::vector<Laser> hero_lasers;
+
+
 
     Block              paddle_;
 
