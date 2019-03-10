@@ -64,6 +64,12 @@ bool Laser::hits_top(Geometry const&) const
         return false;
 }
 
+bool Laser::hits_bottom(Geometry const& geometry) const
+{
+    return ((center_.y + bullet_.height/2) > geometry.scene_dims.height);
+}
+
+
 //Make laser travel vertically
 Laser Laser::next() const
 {

@@ -27,6 +27,8 @@ struct Laser
     ///Member Functions
     ge211::Position top_left() const;
     bool hits_top(Geometry const&) const;
+    bool hits_bottom(Geometry const& geometry) const;
+
     Laser next() const;
     bool hits_hero(Hero const& block) const;
     bool destroy_hero(std::vector<Hero>& heroes, size_t & score, float& velocity) const;

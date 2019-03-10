@@ -129,7 +129,7 @@ void Model::hero_shoot(){
         else{
             Laser new_laser = hero_lasers[i].next();
 
-            if(new_laser.hits_top(geometry_)) {
+            if(new_laser.hits_bottom(geometry_)) {
                 hero_lasers[i] = Laser(heroes_[i], geometry_);
                 return;
             }
