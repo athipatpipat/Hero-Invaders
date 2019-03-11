@@ -110,7 +110,7 @@ bool Laser::destroy_hero(std::vector<Hero>& heroes, size_t& score, float& veloci
                 case 3: score += 10;
                 break;
             }
-            hero.live = false;
+            hero.can_shoot = false;
             std::swap(hero, heroes.back());
 
             heroes.pop_back();
@@ -133,4 +133,12 @@ bool Laser::destroy_player(Block& paddle) const
     if(hits_player(paddle)){
         std::cout << "hit" << "\n";
     }
+}
+
+bool Laser::in_flight() const{
+    ge211::Duration time(0.05);
+
+    return this->timer_.elapsed_time() > time;
+
+
 }

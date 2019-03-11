@@ -20,7 +20,7 @@ public:
 
     int type;
 
-    bool live;
+    bool can_shoot;
 
     static Hero from_top_left(Position tl, Dimensions dims){
         return {tl.x, tl.y, dims.width, dims.height};

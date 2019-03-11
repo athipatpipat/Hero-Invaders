@@ -35,6 +35,7 @@ struct Laser
 
     bool hits_player(Block const& paddle) const;
     bool destroy_player(Block& paddle) const;
+    bool in_flight() const;
 
     ///Member Variables
 
@@ -49,5 +50,6 @@ struct Laser
 
     ge211::Dimensions bullet_;
 
+    ge211::Timer timer_;
 };
 

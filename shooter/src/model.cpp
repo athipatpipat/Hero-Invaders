@@ -45,7 +45,7 @@ Model::Model(Geometry const& geometry)
                 case 4: hero.type = 3;
                 break;
             }
-            hero.live = true;
+            hero.can_shoot = true;
             addHero(hero);
             addLaser(laser);
         }
@@ -127,12 +127,12 @@ void Model::update_hero(){
 void Model::hero_shoot(){
     for(size_t i=0;i<hero_lasers.size();i++){
 
-
-        if(!heroes_[i].live){
+        //dead hero cannot shoot
+        if(!heroes_[i].can_shoot){
             return;
         }
 
-
+        //hero cannot shoot if their laser is still alive
         if(!hero_lasers[i].live_)
             return;
         else{
