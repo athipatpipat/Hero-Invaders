@@ -124,13 +124,23 @@ void Model::update_hero(){
     }
 }
 
+void Model::who_shoots(){
+    bool TrueFalse = (rand() % 100) < 80;
+    for(Hero& hero:heroes_){
+        hero.can_shoot = TrueFalse;
+    }
+}
+
+
 void Model::hero_shoot(){
     for(size_t i=0;i<hero_lasers.size();i++){
 
         //dead hero cannot shoot
         if(!heroes_[i].can_shoot){
+            hero_lasers[i] = Laser(heroes_[i], geometry_);
             return;
         }
+
 
         //hero cannot shoot if their laser is still alive
         if(!hero_lasers[i].live_)
