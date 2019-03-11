@@ -110,8 +110,9 @@ bool Laser::destroy_hero(std::vector<Hero>& heroes, size_t& score, float& veloci
                 case 3: score += 10;
                 break;
             }
-
+            hero.live = false;
             std::swap(hero, heroes.back());
+
             heroes.pop_back();
             return true;
         }

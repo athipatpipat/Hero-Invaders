@@ -20,6 +20,8 @@ public:
 
     int type;
 
+    bool live;
+
     static Hero from_top_left(Position tl, Dimensions dims){
         return {tl.x, tl.y, dims.width, dims.height};
     }

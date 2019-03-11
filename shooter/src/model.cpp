@@ -29,10 +29,12 @@ Model::Model(Geometry const& geometry)
     for(size_t j = 0; j < geometry_.hero_rows; j++){
         for(size_t i = 0; i < geometry_.hero_cols; i++){
             Hero hero;
+
             int x = (i * (geometry_.hero_spacing.width + geometry_.hero_dims().width));
             int y = (j * (geometry_.hero_spacing.height + geometry_.hero_dims().height));
             hero = Hero::from_top_left({(geometry_.side_margin + x), (geometry_.top_margin + y)}, geometry_.hero_dims());
             Laser laser(hero,geometry_);
+
             switch(counter){
                 case 0: hero.type = 1;
                 break;
@@ -43,7 +45,7 @@ Model::Model(Geometry const& geometry)
                 case 4: hero.type = 3;
                 break;
             }
-
+            hero.live = true;
             addHero(hero);
             addLaser(laser);
         }
@@ -124,6 +126,13 @@ void Model::update_hero(){
 
 void Model::hero_shoot(){
     for(size_t i=0;i<hero_lasers.size();i++){
+
+
+        if(!heroes_[i].live){
+            return;
+        }
+
+
         if(!hero_lasers[i].live_)
             return;
         else{
