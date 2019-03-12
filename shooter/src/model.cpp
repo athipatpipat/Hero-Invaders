@@ -1,5 +1,5 @@
 #include "model.h"
-
+#include <iostream>
 
 Model::Model(Geometry const& geometry)
         : geometry_(geometry)
@@ -124,14 +124,34 @@ void Model::update_hero(){
     }
 }
 
+
+
+
 void Model::hero_shoot(){
     for(size_t i=0;i<hero_lasers.size();i++){
 
+/*
 
-        if(!heroes_[i].live){
-            return;
+        if(heroes_[i].live){ //if hero is dead laser stays in place
+            if(hero_lasers[i].live_){ //hero
+                break;
+            }else{ //never runs because hero_lasers[i].live_ is never false;
+                std::cout << "False" << "\n";
+                hero_lasers[i] = Laser(heroes_[i], geometry_);
+                return;
+            }
         }
 
+*/
+
+        if(!heroes_[i].live){ //if hero dies but laser still in flight
+            if(hero_lasers[i].live_){
+            }
+            else{
+                std::cout << "i'm here" << "\n";
+                return;
+            }
+        }
 
         if(!hero_lasers[i].live_)
             return;
@@ -139,7 +159,10 @@ void Model::hero_shoot(){
             Laser new_laser = hero_lasers[i].next();
 
             if(new_laser.hits_bottom(geometry_)) {
-                hero_lasers[i] = Laser(heroes_[i], geometry_);
+                hero_lasers[i].live_ = false;
+                if(heroes_[i].live){
+                    hero_lasers[i] = Laser(heroes_[i], geometry_);
+                }
                 return;
             }
             if(new_laser.destroy_player(paddle_)) {
