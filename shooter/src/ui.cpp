@@ -35,9 +35,10 @@ void Ui::draw(ge211::Sprite_set& sprites)
 
 
     for(size_t i=0;i<model_.hero_lasers.size();i++){
-      //  if(model_.hero_lasers[i].live_){
+
+      //  if(model_.heroes_[i].live){
             sprites.add_sprite(laser_sprite_, model_.hero_lasers[i].center_);
-     //  }
+      //  }
 
     }
 

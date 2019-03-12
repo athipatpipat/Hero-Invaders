@@ -73,6 +73,8 @@ struct Model
 
     std::vector<Laser> hero_lasers;
 
+    void who_shoots();
+
     void addHero(Hero &hero) {
         heroes_.push_back(hero);
     }

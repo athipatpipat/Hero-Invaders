@@ -36,6 +36,7 @@ struct Laser
     bool hits_player(Block const& paddle) const;
     bool destroy_player(Block& paddle) const;
 
+
     ///Member Variables
 
     // The velocity of the laser in pixels per tick.
@@ -48,6 +49,7 @@ struct Laser
     bool              live_;
 
     ge211::Dimensions bullet_;
+
 
 };
 
