@@ -28,7 +28,7 @@ Model::Model(Geometry const& geometry)
 
     std::srand(std::time(0));
     for(size_t j = 0; j < geometry_.hero_rows; j++){
-        std::srand(std::time(0));
+        
         for(size_t i = 0; i < geometry_.hero_cols; i++){
             Hero hero;
 
@@ -47,7 +47,7 @@ Model::Model(Geometry const& geometry)
                 case 4: hero.type = 3;
                 break;
             }
-            bool TrueFalse = (std::rand() % 100) < 40;
+            bool TrueFalse = (std::rand() % 100) < 30;
             if(TrueFalse){
                 std::cout << "True\n";
             }else{
@@ -147,7 +147,7 @@ void Model::who_shoots(){
        */
     for(Hero& hero:heroes_){
         if(hero.live){
-            bool TrueFalse = (std::rand() % 100) < 40;
+            bool TrueFalse = (std::rand() % 100) < 30;
             hero.shooting = TrueFalse;
         }
     }
@@ -174,7 +174,7 @@ void Model::hero_shoot() {
         }
          */
 
-        
+
 
         //if hero.shooting has been set to false but laser still in flight, continue moving the laser
         if ((!heroes_[i].live || !heroes_[i].shooting) &&
