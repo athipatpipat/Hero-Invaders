@@ -18,7 +18,7 @@ Geometry::Geometry() noexcept
         , ball_radius    {    5 }
         , laser_dims_ {5,15}
         , score_board {15,15}
-        , barrier_top {600}
+        , barrier_top {520}
 { }
 
 ge211::Position Geometry::paddle_top_left0() const noexcept
