@@ -99,7 +99,7 @@ struct Model
 
     bool               game_over;
 
-
+    int                 player_lives;
     Block              paddle_;
 
     //direction that the heroes are moving.

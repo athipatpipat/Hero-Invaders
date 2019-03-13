@@ -18,6 +18,7 @@ Geometry::Geometry() noexcept
         , ball_radius    {    5 }
         , laser_dims_ {5,15}
         , score_board {15,15}
+        , live_count {900,15}
         , barrier_top {480}
         , center {490,380}
 { }

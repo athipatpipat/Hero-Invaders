@@ -30,12 +30,17 @@ void Ui::draw(ge211::Sprite_set& sprites) {
     player_scale.set_scale(thanos_scale);
 
     auto str_score = std::to_string(model_.score);
-    score_ = ge211::Text_sprite(str_score, ge211::Font("sans.ttf", 20));
+    score_ = ge211::Text_sprite("Score: " + str_score, ge211::Font("sans.ttf", 20));
+
+    auto str_live = std::to_string(model_.player_lives);
+    lives_ = ge211::Text_sprite("Lives: " + str_live, ge211::Font("sans.ttf", 20));
+
 
     if (!model_.game_over) {
         sprites.add_sprite(laser_sprite_, model_.ball_.top_left().up_by(60).left_by(20));
         sprites.add_sprite(thanos_, model_.paddle_.top_left().up_by(75), 0, player_scale);
         sprites.add_sprite(score_, model_.geometry_.score_board);
+        sprites.add_sprite(lives_, model_.geometry_.live_count);
 
 
         for (size_t i = 0; i < model_.hero_lasers.size(); i++) {

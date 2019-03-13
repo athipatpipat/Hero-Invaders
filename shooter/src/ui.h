@@ -69,6 +69,7 @@ struct Ui : ge211::Abstract_game
     double sprite_scale_width = .2;
     double sprite_scale_height = .15;
     ge211::Text_sprite score_;
+    ge211::Text_sprite lives_;
     ge211::Text_sprite game_over_msg;
     //= ge211::Text_sprite("Hello",ge211::Font("sans.ttf",20));
 

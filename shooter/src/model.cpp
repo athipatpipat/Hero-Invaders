@@ -12,6 +12,7 @@ Model::Model(Geometry const& geometry)
         , counter(0)
         , hero_velocity(3)
         , game_over(false)
+        , player_lives(3)
 
 {
     /*
@@ -158,7 +159,7 @@ void Model::who_shoots(){
        */
     for(Hero& hero:heroes_){
         if(hero.live){
-            bool TrueFalse = (std::rand() % 100) < 20;
+            bool TrueFalse = (std::rand() % 100) < 10;
             hero.shooting = TrueFalse;
         }
     }
@@ -213,6 +214,10 @@ void Model::hero_shoot() {
 
             if (new_laser.destroy_player(paddle_)) {
                 hero_lasers[i] = Laser(heroes_[i], geometry_);
+                player_lives--;
+                if(player_lives == 0){
+                    game_over = true;
+                }
                 return;
             }
 
