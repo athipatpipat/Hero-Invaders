@@ -28,7 +28,7 @@ Model::Model(Geometry const& geometry)
 
     std::srand(std::time(0));
     for(size_t j = 0; j < geometry_.hero_rows; j++){
-        
+
         for(size_t i = 0; i < geometry_.hero_cols; i++){
             Hero hero;
 
@@ -147,7 +147,7 @@ void Model::who_shoots(){
        */
     for(Hero& hero:heroes_){
         if(hero.live){
-            bool TrueFalse = (std::rand() % 100) < 30;
+            bool TrueFalse = (std::rand() % 100) < 20;
             hero.shooting = TrueFalse;
         }
     }
@@ -168,20 +168,12 @@ void Model::switch_shooter(){
 void Model::hero_shoot() {
     for (size_t i = 0; i < hero_lasers.size(); i++) {
 
-        /*
-        if(!heroes_[i].shooting){
-            return;
-        }
-         */
-
-
 
         //if hero.shooting has been set to false but laser still in flight, continue moving the laser
-        if ((!heroes_[i].live || !heroes_[i].shooting) &&
-            (hero_lasers[i].live_)) { //if hero dies but laser still in flight or if hero cannot shoot anymore
+        if ((!heroes_[i].live || !heroes_[i].shooting)) { //if hero dies but laser still in flight or if hero cannot shoot anymore
             if (hero_lasers[i].live_) { //continue if laser still alive
-            } else {
-                //std::cout<< "laser dies\n";
+            }
+            else {
                 continue; //if hero dies, or cant shoot, return
             }
         }
@@ -192,7 +184,7 @@ void Model::hero_shoot() {
         //   return;
         //  else{
 
-        if (heroes_[i].shooting) {
+        //if (heroes_[i].shooting) {
 
             Laser new_laser = hero_lasers[i].next();
 
@@ -201,10 +193,8 @@ void Model::hero_shoot() {
 
                 //have a timer and switch every shooters every time timer hits certain time
 
-                if (heroes_[i].live &&
-                    heroes_[i].shooting) { //if the laser reaches the end, and hero is still alive, reset the laser, if not, kill laser
-                    hero_lasers[i] = Laser(heroes_[i],
-                                           geometry_); //if laser reaches the end, and hero is shooting, make new laser (does not make sense)
+                if (heroes_[i].live && heroes_[i].shooting) { //if the laser reaches the end, and hero is still alive, reset the laser, if not, kill laser
+                    hero_lasers[i] = Laser(heroes_[i],geometry_); //if laser reaches the end, and hero is shooting, make new laser (does not make sense)
                 }
                 return;
             }
@@ -216,10 +206,10 @@ void Model::hero_shoot() {
             }
 
             hero_lasers[i] = hero_lasers[i].next();
-            //  }
+
         }
 
-    }
+    //}
 
 
 }
