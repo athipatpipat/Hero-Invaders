@@ -4,8 +4,8 @@
 // This is the default (and only) constructor for `Geometry`. It determines
 // all the default values of all the member variables.
 Geometry::Geometry() noexcept
-        : hero_cols     {   5 }
-        , hero_rows     {   5 }
+        : hero_cols     {   11 }
+        , hero_rows     {   5}
         , top_margin     {  100 }
         , side_margin    {  170 }
         , hero_depth    {  300 }
@@ -18,7 +18,8 @@ Geometry::Geometry() noexcept
         , ball_radius    {    5 }
         , laser_dims_ {5,15}
         , score_board {15,15}
-        , barrier_top {520}
+        , barrier_top {480}
+        , center {490,380}
 { }
 
 ge211::Position Geometry::paddle_top_left0() const noexcept

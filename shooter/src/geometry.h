@@ -17,6 +17,8 @@ struct Geometry
     // The dimensions of the whole window:
     ge211::Dimensions scene_dims;
 
+    ge211::Position center;
+
     // The dimensions of the player (the "villain" at the bottom):
     ge211::Dimensions player_dims_;
 

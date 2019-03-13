@@ -59,7 +59,9 @@ void Ui::draw(ge211::Sprite_set& sprites) {
         }
     }
     else{
-        //if gameover, draw gameover screen
+        game_over_msg = ge211::Text_sprite("Game Over", ge211::Font("sans.ttf", 20));
+        sprites.add_sprite(game_over_msg,model_.geometry_.center);
+
     }
 }
 
