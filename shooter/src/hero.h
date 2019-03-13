@@ -13,6 +13,7 @@ using Rectangle = ge211:: Basic_rectangle<float>;
 class Hero{
 public:
 
+
     float x;
     float y;
     float width;

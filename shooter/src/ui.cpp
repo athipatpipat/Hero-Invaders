@@ -77,7 +77,6 @@ void Ui::on_frame(double)
     ge211::Duration timepass(timer_.elapsed_time());
 
     if(timepass.seconds() > 0.5){
-        std::cout<<"lap\n";
         model_.who_shoots();
         timer_.reset();
     }

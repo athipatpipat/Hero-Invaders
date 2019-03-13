@@ -47,6 +47,11 @@ Model::Model(Geometry const& geometry)
                 break;
             }
             bool TrueFalse = (std::rand() % 100) < 40;
+            if(TrueFalse){
+                std::cout << "True\n";
+            }else{
+                std::cout << "False\n";
+            }
             hero.shooting = TrueFalse;
             hero.live = true;
             addHero(hero);
