@@ -38,9 +38,9 @@ void Ui::draw(ge211::Sprite_set& sprites)
 
     for(size_t i=0;i<model_.hero_lasers.size();i++){
 
-      //  if(model_.heroes_[i].live){
+      if(model_.hero_lasers[i].live_ ){
             sprites.add_sprite(laser_sprite_, model_.hero_lasers[i].center_);
-      //  }
+      }
 
     }
 
@@ -76,7 +76,7 @@ void Ui::on_frame(double)
 
     ge211::Duration timepass(timer_.elapsed_time());
 
-    if(timepass.seconds() > 0.5){
+    if(timepass.seconds() > 4){
         model_.who_shoots();
         timer_.reset();
     }

@@ -111,6 +111,7 @@ bool Laser::destroy_hero(std::vector<Hero>& heroes, size_t& score, float& veloci
                 break;
             }
             hero.live = false;
+            hero.shooting = false;
             std::swap(hero, heroes.back());
 
             heroes.pop_back();
