@@ -41,7 +41,7 @@ Laser::Laser(Hero const& hero, Geometry const& geometry)
         : bullet_   (geometry.laser_dims_)
         , velocity_ (geometry.laser_velocity_hero)
         , center_   (below_block(hero, geometry))
-        , live_     (true)
+        , live_     (false)
 {}
 
 
