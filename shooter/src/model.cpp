@@ -26,7 +26,7 @@ Model::Model(Geometry const& geometry)
     }
     */
 
-
+    std::srand(std::time(0));
     for(size_t j = 0; j < geometry_.hero_rows; j++){
         for(size_t i = 0; i < geometry_.hero_cols; i++){
             Hero hero;
@@ -46,11 +46,8 @@ Model::Model(Geometry const& geometry)
                 case 4: hero.type = 3;
                 break;
             }
-            std::srand(std::time(NULL));
             bool TrueFalse = (std::rand() % 100) < 40;
             hero.shooting = TrueFalse;
-
-
             hero.live = true;
             addHero(hero);
             addLaser(laser);
@@ -141,7 +138,7 @@ bool Model::no_lasers(){
 
 
 void Model::who_shoots(){
-    std::srand(time(NULL));
+    std::srand(time(0));
       //TrueFalse;
       /*
     if(TrueFalse){
