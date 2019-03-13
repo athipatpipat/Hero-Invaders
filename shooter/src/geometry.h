@@ -45,6 +45,9 @@ struct Geometry
     // Number of pixels from bottom of screen to bottom of paddle.
     int bottom_margin;
 
+    // Number of pixel from top of screen to top of barrier
+    int barrier_top;
+
 
     int ball_radius;
 

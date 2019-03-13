@@ -97,7 +97,7 @@ struct Model
     Geometry const     geometry_;
 
 
-
+    bool               game_over;
 
 
     Block              paddle_;

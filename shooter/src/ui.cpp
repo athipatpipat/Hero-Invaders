@@ -71,20 +71,22 @@ void Ui::on_key(ge211::Key key)
 
 }
 
-void Ui::on_frame(double)
-{
+void Ui::on_frame(double) {
 
-    ge211::Duration timepass(timer_.elapsed_time());
+   if(!model_.game_over) {
 
-    if(timepass.seconds() > 4){
-        model_.who_shoots();
-        timer_.reset();
+        ge211::Duration timepass(timer_.elapsed_time());
+
+        if (timepass.seconds() > 4) {
+            model_.who_shoots();
+            timer_.reset();
+        }
+
+
+        model_.update();
+        model_.update_hero();
+        model_.hero_shoot();
     }
-
-
-    model_.update();
-    model_.update_hero();
-    model_.hero_shoot();
 
 }
 

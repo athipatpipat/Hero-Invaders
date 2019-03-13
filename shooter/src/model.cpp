@@ -11,6 +11,7 @@ Model::Model(Geometry const& geometry)
         , ball_(paddle_, geometry_)
         , counter(0)
         , hero_velocity(3)
+        , game_over(false)
 
 {
     /*
@@ -131,6 +132,16 @@ void Model::update_hero(){
             }
         }
     }
+
+    //check if hero has hit barrier line, if hit, make game_over == true, go to UI and stop updating everything
+
+    for(Hero& hero:heroes_){
+        if((hero.y + hero.height/2)>geometry_.barrier_top ){
+            game_over = true;
+        }
+    }
+
+
 }
 
 
