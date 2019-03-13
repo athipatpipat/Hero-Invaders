@@ -131,7 +131,7 @@ bool Laser::hits_player(Block const& paddle) const
 bool Laser::destroy_player(Block& paddle) const
 {
     if(hits_player(paddle)){
-        std::cout << "hit" << "\n";
+        //std::cout << "hit" << "\n";
     }
 }
 

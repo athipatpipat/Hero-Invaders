@@ -25,7 +25,7 @@ public:
     static Hero from_top_left(Position tl, Dimensions dims){
         return {tl.x, tl.y, dims.width, dims.height};
     }
-
+    bool shooting;
 
     ge211::Position top_left() const
     {

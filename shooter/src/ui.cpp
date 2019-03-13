@@ -1,5 +1,6 @@
 #include "ui.h"
 #include <string>
+#include <iostream>
 
 ge211::Color const paddle_color  {255, 255, 127};
 ge211::Color const brick_color   {100, 100, 100};
@@ -10,6 +11,7 @@ ge211::Color const ball_color    {255, 127, 127};
 // initializer list.
 Ui::Ui(Model& model)
         : model_(model)
+
 { }
 
 ge211::Dimensions Ui::initial_window_dimensions() const
@@ -71,9 +73,20 @@ void Ui::on_key(ge211::Key key)
 
 void Ui::on_frame(double)
 {
+
+    ge211::Duration timepass(timer_.elapsed_time());
+
+    if(timepass.seconds() > 0.5){
+        std::cout<<"lap\n";
+        model_.who_shoots();
+        timer_.reset();
+    }
+
+
     model_.update();
     model_.update_hero();
     model_.hero_shoot();
+
 }
 
 

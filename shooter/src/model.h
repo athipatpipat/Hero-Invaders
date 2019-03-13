@@ -73,6 +73,8 @@ struct Model
 
     std::vector<Laser> hero_lasers;
 
+    bool no_lasers();
+
     void who_shoots();
 
     void addHero(Hero &hero) {
@@ -82,6 +84,7 @@ struct Model
         hero_lasers.push_back(laser);
     }
 
+   // void switch_shooter();
 
 
 
@@ -109,5 +112,7 @@ struct Model
     float             hero_velocity;
 
     size_t              counter;
+
+  //  ge211::Timer        timer_;
 };
 

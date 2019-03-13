@@ -4,8 +4,8 @@
 // This is the default (and only) constructor for `Geometry`. It determines
 // all the default values of all the member variables.
 Geometry::Geometry() noexcept
-        : hero_cols     {   2 }
-        , hero_rows     {   2 }
+        : hero_cols     {   3 }
+        , hero_rows     {   3 }
         , top_margin     {  100 }
         , side_margin    {  170 }
         , hero_depth    {  300 }

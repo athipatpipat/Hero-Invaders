@@ -76,6 +76,7 @@ struct Ui : ge211::Abstract_game
     ge211::Image_sprite thanos_{"thanos.png"};
     double thanos_scale = .2;
 
+    ge211::Timer timer_;
 
 
 
