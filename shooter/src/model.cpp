@@ -12,7 +12,7 @@ Model::Model(Geometry const& geometry)
         , counter(0)
         , hero_velocity(3)
         , game_over(false)
-        , player_lives(3)
+        , player_lives(10)
 
 {
     /*
@@ -74,15 +74,15 @@ void Model::launch()
 }
 
 void Model::move_player_right(){
-    paddle_.x += 10;
+    paddle_.x += 20;
     if(!ball_.live_)
-        ball_.center_.x += 10;
+        ball_.center_.x += 20;
 }
 
 void Model::move_player_left() {
-    paddle_.x -= 10;
+    paddle_.x -= 20;
     if(!ball_.live_)
-        ball_.center_.x -= 10;
+        ball_.center_.x -= 20;
 }
 
 
@@ -206,6 +206,7 @@ void Model::hero_shoot() {
                 if(player_lives == 0){
                     game_over = true;
                 }
+
                 return;
             }
 

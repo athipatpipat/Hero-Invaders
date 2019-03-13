@@ -25,7 +25,7 @@ void Ui::draw(ge211::Sprite_set& sprites) {
     scale.set_scale_y(sprite_scale_height);
     //sprites.add_sprite(ball_sprite_, model_.ball_.top_left());
 
-    /* sprites.add_sprite(player_sprite_, model_.paddle_.top_left());*/
+    //sprites.add_sprite(player_sprite_, model_.paddle_.top_left());*/
     ge211::Transform player_scale;
     player_scale.set_scale(thanos_scale);
 
@@ -38,6 +38,7 @@ void Ui::draw(ge211::Sprite_set& sprites) {
 
     if (!model_.game_over) {
         sprites.add_sprite(laser_sprite_, model_.ball_.top_left().up_by(60).left_by(20));
+        sprites.add_sprite(player_sprite_, model_.paddle_.top_left());
         sprites.add_sprite(thanos_, model_.paddle_.top_left().up_by(75), 0, player_scale);
         sprites.add_sprite(score_, model_.geometry_.score_board);
         sprites.add_sprite(lives_, model_.geometry_.live_count);
@@ -45,9 +46,9 @@ void Ui::draw(ge211::Sprite_set& sprites) {
 
         for (size_t i = 0; i < model_.hero_lasers.size(); i++) {
 
-           if (model_.hero_lasers[i].live_) {
+          // if (model_.hero_lasers[i].live_) {
                 sprites.add_sprite(laser_sprite_, model_.hero_lasers[i].center_);
-           }
+          // }
 
         }
 
