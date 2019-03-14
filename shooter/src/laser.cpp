@@ -90,8 +90,9 @@ bool Laser::hits_hero(Block const& block) const
 
 bool Laser::hits_hero(Hero const& block) const
 {
-    if((center_.x + bullet_.width/2 ) < block.x || (block.x + block.width) < (center_.x - bullet_.width/2 ) || (center_.y +  bullet_.height/2 ) < block.y || (block.y+block.height) < (center_.y - bullet_.height/2 ))
+    if((center_.x + bullet_.width/2 - 20) < block.x || (block.x + block.width) < (center_.x - bullet_.width/2 - 20) || (center_.y +  bullet_.height/2 - 60) < block.y || (block.y+block.height) < (center_.y - bullet_.height/2 - 60)) {
         return false;
+    }
     else
         return true;
 }
