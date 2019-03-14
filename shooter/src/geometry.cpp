@@ -11,7 +11,7 @@ Geometry::Geometry() noexcept
         , hero_depth    {  300 }
         , bottom_margin  {   50 }
         , hero_spacing  {   10,   5 }
-        , laser_velocity0 {    3, -10 }
+        , laser_velocity0 {    3, -8 }
         , laser_velocity_hero {3,5}
         , scene_dims     { 1024, 768 }
         , player_dims_   {  60,  20 }
