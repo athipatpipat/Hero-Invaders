@@ -124,14 +124,22 @@ void Model::update(){
 void Model::update_hero(){
 
     if(hero_direction){
-        for(Hero& hero:heroes_ ){
-            hero.x += hero_velocity;
+        for (size_t i = 0; i < hero_lasers.size(); i++) {
+            heroes_[i].x += hero_velocity;
+            if(!hero_lasers[i].live_){
+                hero_lasers[i].center_.x += hero_velocity;
+            }
+
         }
     }
 
     if(!hero_direction){
-        for(Hero& hero:heroes_ ){
-            hero.x -= hero_velocity;
+        for (size_t i = 0; i < hero_lasers.size(); i++) {
+            heroes_[i].x -= hero_velocity;
+            
+            if(!hero_lasers[i].live_){
+                hero_lasers[i].center_.x -= hero_velocity;
+            }
         }
     }
 
@@ -139,14 +147,23 @@ void Model::update_hero(){
     for(Hero& hero:heroes_){
         if(hero.x + hero.width > geometry_.scene_dims.width){
             hero_direction = false;
-            for(Hero& hero:heroes_){
-                hero.y += 3;
+            for (size_t i = 0; i < hero_lasers.size(); i++) {
+                heroes_[i].y += 3;
+
+                if(!hero_lasers[i].live_){
+                    hero_lasers[i].center_.y += 3;
+                }
+
             }
         }
         if(hero.x < 0){
             hero_direction = true;
-            for(Hero& hero:heroes_){
-                hero.y += 3;
+            for (size_t i = 0; i < hero_lasers.size(); i++) {
+                heroes_[i].y += 3;
+
+                if(!hero_lasers[i].live_){
+                    hero_lasers[i].center_.y += 3;
+                }
             }
         }
     }
@@ -207,7 +224,7 @@ void Model::hero_shoot() {
         }
 
         //if hero can shoot, but laser is not live, this check doesn't stop it from moving the laser
-        if ((!heroes_[i].live || !heroes_[i].shooting)) {
+        if ((!heroes_[i].live && !heroes_[i].shooting)) {
             if (hero_lasers[i].live_) {
             }
             else {
