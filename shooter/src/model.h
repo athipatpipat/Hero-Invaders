@@ -8,7 +8,7 @@
 //
 //  - the location and size of the player
 //
-//  - the state of the laser, including its location and velocity (
+//  - the state of the laser, including its location and velocity
 
 #pragma once
 
@@ -27,23 +27,6 @@ struct Model
     ///
 
     // Constructs a model from its geometry.
-    //
-    // The `= Geometry()` syntax makes the argument optional, in which case
-    // it defaults to the default `Geometry`. That is, you can explicitly
-    // create a `Geometry` to pass the `Model` constructor like so:
-    //
-    //     Geometry geo;
-    //     geo.ball_radius = 2;
-    //     Model model(geo);
-    //
-    // Or you can omit the constructor argument, in which case you get
-    // the default `Geometry` (as defined in geometry.cpp):
-    //
-    //     Model model;
-    //
-    // The word `explicit` means that this constructor doesn't define an
-    // implicit conversion whereby C++ would automatically convert
-    // `Geometry`s into `Model`s if needed. You don't want that.
     explicit Model(Geometry const& geometry = Geometry());
 
     ///
@@ -53,13 +36,10 @@ struct Model
     void move_player_right();
     void move_player_left();
 
-    // Makes the laser live.
     void launch();
-
 
     void update();
 
-    //Moves hero
     void update_hero();
 
     void hero_shoot();
@@ -84,14 +64,19 @@ struct Model
     /// MEMBER VARIABLES
     ///
 
+    // position and dimensions of the lasers
     Laser               laser_;
+
+    // the geometry parameters of the model
     Geometry const     geometry_;
 
-
+    // if is true, game continues, if false, game ends
     bool               game_over;
 
+    // amount of lives the player has in a game
     int                 player_lives;
 
+    // position and dimensions of the player
     Block              player_;
 
     //direction that the heroes are moving.
@@ -99,11 +84,13 @@ struct Model
     //false means left
     bool                hero_direction;
 
+    // keeps track of the score of the game
     size_t              score;
 
+    // velocity of the heroes
     float             hero_velocity;
 
+    //used to determine the types of heroes
     size_t              counter;
-
 };
 

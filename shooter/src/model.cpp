@@ -2,6 +2,7 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
+//constructor for the heroes and barriers
 Model::Model(Geometry const& geometry)
         : geometry_(geometry)
         , hero_direction(true)
@@ -45,7 +46,6 @@ Model::Model(Geometry const& geometry)
             }else{
                 laser.live_ = false;
             }
-
             hero.live = true;
             addHero(hero);
             addLaser(laser);
@@ -64,23 +64,27 @@ Model::Model(Geometry const& geometry)
     }
 }
 
+// makes lasers shoot
 void Model::launch()
 {
     laser_.live_ = true;
 }
 
+// will be used to move player to the right when right arrow key is pressed
 void Model::move_player_right(){
     player_.x += 20;
     if(!laser_.live_)
         laser_.center_.x += 20;
 }
 
+// will be used to move player to the right when left arrow key is pressed
 void Model::move_player_left() {
     player_.x -= 20;
     if(!laser_.live_)
         laser_.center_.x -= 20;
 }
 
+// updates the status of the player's laser
 void Model::update(){
     if(!laser_.live_)
         return;
@@ -103,6 +107,7 @@ void Model::update(){
     }
 }
 
+// updates the status of the heroes
 void Model::update_hero(){
     if(hero_direction){
         for (size_t i = 0; i < hero_lasers.size(); i++) {
@@ -112,7 +117,6 @@ void Model::update_hero(){
             }
         }
     }
-
     if(!hero_direction){
         for (size_t i = 0; i < hero_lasers.size(); i++) {
             heroes_[i].x -= hero_velocity;
@@ -122,34 +126,28 @@ void Model::update_hero(){
             }
         }
     }
-
     //check if any hero have gone past right side
     for(Hero& hero:heroes_){
         if(hero.x + hero.width > geometry_.scene_dims.width){
             hero_direction = false;
             for (size_t i = 0; i < hero_lasers.size(); i++) {
                 heroes_[i].y += 3;
-
                 if(!hero_lasers[i].live_){
                     hero_lasers[i].center_.y += 3;
                 }
-
             }
         }
         if(hero.x < 0){
             hero_direction = true;
             for (size_t i = 0; i < hero_lasers.size(); i++) {
                 heroes_[i].y += 3;
-
                 if(!hero_lasers[i].live_){
                     hero_lasers[i].center_.y += 3;
                 }
             }
         }
     }
-
     //check if hero has hit barrier line, if hit, make game_over == true, go to UI and stop updating everything
-
     for(Hero& hero:heroes_){
         if((hero.y + hero.height/2)>geometry_.barrier_top ){
             game_over = true;
@@ -157,6 +155,7 @@ void Model::update_hero(){
     }
 }
 
+// changes which hero shoots randomly
 void Model::who_shoots(){
     std::srand(std::time(0));
     for (size_t i = 0; i < hero_lasers.size(); i++) {
@@ -166,11 +165,11 @@ void Model::who_shoots(){
             if(heroes_[i].shooting){
                 hero_lasers[i].live_ = true;
             }
-
         }
     }
 }
 
+// makes the hero shoot
 void Model::hero_shoot() {
     for (size_t i = 0; i < hero_lasers.size(); i++) {
         if(!hero_lasers[i].live_){
@@ -185,18 +184,15 @@ void Model::hero_shoot() {
             }
         }
         Laser new_laser = hero_lasers[i].next();
-
         if (new_laser.hits_bottom(geometry_)) {
             hero_lasers[i].live_ = false;
 
             if (heroes_[i].live && heroes_[i].shooting) {
                 hero_lasers[i] = Laser(heroes_[i],geometry_);
                 hero_lasers[i].live_ = true;
-
             }
             return;
         }
-
         if (new_laser.destroy_barrier(barriers_)){
             hero_lasers[i] = Laser(heroes_[i],geometry_);
             hero_lasers[i].live_ = true;
@@ -211,7 +207,6 @@ void Model::hero_shoot() {
             }
             return;
         }
-
         hero_lasers[i] = hero_lasers[i].next();
     }
 

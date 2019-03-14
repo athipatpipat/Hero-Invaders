@@ -49,6 +49,7 @@ struct Laser
     // Whether the laser is moving freely (true) or has not been shot yet (false).
     bool              live_;
 
+    // The dimensions of the laser
     ge211::Dimensions bullet_;
 };
 
