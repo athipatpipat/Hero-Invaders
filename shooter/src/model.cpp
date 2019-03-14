@@ -164,8 +164,8 @@ void Model::update_hero(){
 
 
 
-void Model::who_shoots(){
-    std::srand(std::time(0));
+void Model::who_shoots(int x){
+   /* std::srand(std::time(0));
       //TrueFalse;
       /*
     if(TrueFalse){
@@ -175,10 +175,12 @@ void Model::who_shoots(){
     }
        */
     for(Hero& hero:heroes_){
-        if(hero.live){
-            bool TrueFalse = (std::rand() % 100) < 10;
+        if(hero.live && !hero.shooting){
+            bool TrueFalse = x < 5;
             hero.shooting = TrueFalse;
         }
+        else
+            hero.shooting = false;
     }
 }
 
@@ -208,6 +210,7 @@ void Model::hero_shoot() {
 
         if (new_laser.destroy_barrier(barriers_)){
             hero_lasers[i] = Laser(heroes_[i],geometry_);
+            hero_lasers[i].live_ = true;
             return;
             }
         if (new_laser.destroy_player(paddle_)) {
@@ -215,7 +218,7 @@ void Model::hero_shoot() {
             hero_lasers[i].live_ = true;
             player_lives--;
             if(player_lives == 0){
-                game_over = true;
+                /*game_over = true;*/
             }
             return;
         }

@@ -77,7 +77,7 @@ struct Model
 
     bool no_lasers();
 
-    void who_shoots();
+    void who_shoots(int x);
 
     void addHero(Hero &hero) {
         heroes_.push_back(hero);

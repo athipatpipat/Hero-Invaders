@@ -72,7 +72,6 @@ void Ui::draw(ge211::Sprite_set& sprites) {
     }
 }
 
-
 void Ui::on_key(ge211::Key key)
 {
     if (key == ge211::Key::left()){
@@ -82,24 +81,15 @@ void Ui::on_key(ge211::Key key)
     } else if (key == ge211::Key::code(' ')) {
         model_.launch();
     }
-
 }
 
 void Ui::on_frame(double) {
-
    if(!model_.game_over) {
-
-        ge211::Duration timepass(timer_.elapsed_time());
-
-        if (timepass.seconds() > 4) {
-            model_.who_shoots();
-            timer_.reset();
-        }
         model_.update();
         model_.update_hero();
         model_.hero_shoot();
+        model_.who_shoots(get_random().between(1,100));
     }
-
 }
 
 
