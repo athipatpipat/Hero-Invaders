@@ -12,7 +12,7 @@ Model::Model(Geometry const& geometry)
         , counter(0)
         , hero_velocity(1)
         , game_over(false)
-        , player_lives(3)
+        , player_lives(50)
 
 {
     /*
@@ -177,7 +177,7 @@ void Model::who_shoots(){
 
     for (size_t i = 0; i < hero_lasers.size(); i++) {
         if(heroes_[i].live){
-            bool TrueFalse = (std::rand() % 100) < 5;
+            bool TrueFalse = (std::rand() % 100) < 3;
             heroes_[i].shooting = TrueFalse;
             if(heroes_[i].shooting){
                 hero_lasers[i].live_ = true;

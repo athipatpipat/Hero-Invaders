@@ -89,15 +89,15 @@ void Ui::on_frame(double) {
 
    if(!model_.game_over) {
 
-        /*
+        
         ge211::Duration timepass(timer_.elapsed_time());
 
         if (timepass.seconds() > 4) {
             model_.who_shoots();
             timer_.reset();
         }
-         */
-        model_.who_shoots();
+
+        //model_.who_shoots();
         model_.update();
         model_.update_hero();
         model_.hero_shoot();
