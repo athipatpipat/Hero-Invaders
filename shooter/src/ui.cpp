@@ -45,9 +45,9 @@ void Ui::draw(ge211::Sprite_set& sprites) {
 
 
         for (size_t i = 0; i < model_.hero_lasers.size(); i++) {
-          if (model_.hero_lasers[i].live_) {
+         if (model_.hero_lasers[i].live_) {
                 sprites.add_sprite(laser_sprite_, model_.hero_lasers[i].center_);
-          }
+         }
         }
 
         for(Block barrier:model_.barriers_){
@@ -89,12 +89,15 @@ void Ui::on_frame(double) {
 
    if(!model_.game_over) {
 
+        /*
         ge211::Duration timepass(timer_.elapsed_time());
 
         if (timepass.seconds() > 4) {
             model_.who_shoots();
             timer_.reset();
         }
+         */
+        model_.who_shoots();
         model_.update();
         model_.update_hero();
         model_.hero_shoot();
