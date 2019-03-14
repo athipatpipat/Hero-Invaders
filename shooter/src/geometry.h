@@ -11,9 +11,9 @@ struct Geometry
     ///Constructors
     Geometry() noexcept;
 
-
     ///Member Variables
     ge211::Dimensions barrier_dims;
+
     // The dimensions of the whole window:
     ge211::Dimensions scene_dims;
 
@@ -52,9 +52,6 @@ struct Geometry
 
     // Number of pixel from top of screen to top of barrier
     int barrier_top;
-
-
-    int ball_radius;
 
 
     ge211::Position score_board;

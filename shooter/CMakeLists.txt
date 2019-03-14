@@ -9,7 +9,6 @@ set(CMAKE_CXX_COMPILER C:/MinGW/bin/g++.exe)
 set(MODEL_COMMON
         src/geometry.cpp
         src/laser.cpp
-        src/hero.cpp
         src/model.cpp)
 
 

@@ -2,13 +2,13 @@
 // Created by Pun on 3/9/2019.
 //
 
+#pragma once
+
 #include <ge211.h>
 
 using Position = ge211:: Basic_position<float>;
 using Dimensions = ge211:: Basic_dimensions<float>;
 using Rectangle = ge211:: Basic_rectangle<float>;
-
-#pragma once
 
 class Hero{
 public:

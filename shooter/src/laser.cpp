@@ -78,16 +78,6 @@ Laser Laser::next() const
     return result;
 }
 
-
-/*//Check if hero has been hit
-bool Laser::hits_hero(Block const& block) const
-{
-    if((center_.x + radius_) < block.x || (block.x + block.width) < (center_.x - radius_) || (center_.y + radius_) < block.y || (block.y+block.height) < (center_.y - radius_))
-        return false;
-    else
-        return true;
-}*/
-
 bool Laser::hits_hero(Hero const& block) const
 {
     if((center_.x + bullet_.width/2) < block.x || (block.x + block.width) < (center_.x - bullet_.width/2) || (center_.y +  bullet_.height/2 - 60) < block.y || (block.y+block.height) < (center_.y - bullet_.height/2 - 60)) {

@@ -155,8 +155,6 @@ void Model::update_hero(){
             game_over = true;
         }
     }
-
-
 }
 
 

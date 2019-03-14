@@ -18,11 +18,6 @@
 #include "laser.h"
 
 
-
-
-
-
-
 // The logical state of the game.
 struct Model
 {
@@ -75,8 +70,6 @@ struct Model
 
     std::vector<Block> barriers_;
 
-    bool no_lasers();
-
     void who_shoots();
 
     void addHero(Hero &hero) {
@@ -85,9 +78,6 @@ struct Model
     void addLaser(Laser &laser) {
         hero_lasers.push_back(laser);
     }
-
-
-
 
 
     ///
@@ -115,6 +105,5 @@ struct Model
 
     size_t              counter;
 
-  //  ge211::Timer        timer_;
 };
 

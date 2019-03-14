@@ -15,7 +15,6 @@ Geometry::Geometry() noexcept
         , laser_velocity_hero {3,5}
         , scene_dims     { 1024, 768 }
         , player_dims_   {  60,  20 }
-        , ball_radius    {    5 }
         , laser_dims_ {5,15}
         , score_board {15,15}
         , live_count {900,15}
