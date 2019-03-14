@@ -3,8 +3,8 @@
 #include <iostream>
 
 ge211::Color const paddle_color  {255, 255, 127};
-ge211::Color const brick_color   {100, 100, 100};
 ge211::Color const ball_color    {255, 127, 127};
+ge211::Color const barrier_color {105, 105, 105};
 
 // Data members that are references cannot be initialized by assignment
 // in the constructor body and must be initialized in a member
@@ -45,13 +45,14 @@ void Ui::draw(ge211::Sprite_set& sprites) {
 
 
         for (size_t i = 0; i < model_.hero_lasers.size(); i++) {
-
           if (model_.hero_lasers[i].live_) {
                 sprites.add_sprite(laser_sprite_, model_.hero_lasers[i].center_);
-           }
-
+          }
         }
 
+        for(Block barrier:model_.barriers_){
+            sprites.add_sprite(barrier_sprite_, ge211::Position(barrier.x, barrier.y));
+        }
 
         for (Hero &hero:model_.heroes_) {
             //make an if statement to check type of hero

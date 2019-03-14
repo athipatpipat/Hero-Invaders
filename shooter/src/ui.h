@@ -17,7 +17,7 @@ using Block = ge211::Rectangle;
 // The keyword `extern` is what prevents this declaration from being
 // a definition. That is, this declaration informs subsequent code about
 // the existence of these constants without actually defining them here.
-extern ge211::Color const ball_color, paddle_color, brick_color;
+extern ge211::Color const ball_color, paddle_color, barrier_color;
 
 struct Ui : ge211::Abstract_game
 {
@@ -62,8 +62,8 @@ struct Ui : ge211::Abstract_game
     ge211::Rectangle_sprite const
             player_sprite_  {model_.geometry_.player_dims_, paddle_color};
 
-    //ge211::Rectangle_sprite const
-     //       brick_sprite_   {model_.geometry_.hero_dims(), brick_color};
+    ge211::Rectangle_sprite const
+            barrier_sprite_ {model_.geometry_.barrier_dims, barrier_color};
 
     ge211::Image_sprite batman_{"batman.png"};
     double sprite_scale_width = .2;

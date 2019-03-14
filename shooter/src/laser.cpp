@@ -133,7 +133,37 @@ bool Laser::hits_player(Block const& paddle) const
 bool Laser::destroy_player(Block& paddle) const
 {
     if(hits_player(paddle)){
-        //std::cout << "hit" << "\n";
     }
 }
 
+bool Laser::hits_barrier(Block const& brick) const {
+    if ((center_.x + bullet_.width / 2 - 20) < brick.x ||
+        (brick.x + brick.width) < (center_.x - bullet_.width / 2 - 20) ||
+        (center_.y + bullet_.height / 2 - 60) < brick.y ||
+        (brick.y + brick.height) < (center_.y - bullet_.height / 2 - 60))
+        return false;
+    else
+        return true;
+}
+
+bool Laser::hero_hits_barrier(Block const& brick) const {
+    if ((center_.x + bullet_.width / 2) < brick.x ||
+        (brick.x + brick.width) < (center_.x - bullet_.width / 2) ||
+        (center_.y + bullet_.height / 2) < brick.y ||
+        (brick.y + brick.height) < (center_.y - bullet_.height / 2))
+        return false;
+    else
+        return true;
+}
+
+bool Laser::destroy_barrier(std::vector<Block>& barriers)
+{
+    for(Block &barrier : barriers){
+        if(hits_barrier(barrier) || hero_hits_barrier(barrier)){
+            std::swap(barrier, barriers.back());
+            barriers.pop_back();
+            return true;
+        }
+    }
+    return false;
+}

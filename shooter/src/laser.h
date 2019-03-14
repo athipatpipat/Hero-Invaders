@@ -36,6 +36,10 @@ struct Laser
     bool hits_player(Block const& paddle) const;
     bool destroy_player(Block& paddle) const;
 
+    bool hero_hits_barrier(Block const& brick) const;
+    bool hits_barrier(Block const& brick) const;
+    bool destroy_barrier(std::vector<Block>& barrier);
+
 
     ///Member Variables
 

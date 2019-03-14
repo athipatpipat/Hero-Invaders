@@ -21,6 +21,7 @@ Geometry::Geometry() noexcept
         , live_count {900,15}
         , barrier_top {480}
         , center {490,380}
+        , barrier_dims {33,33}
 { }
 
 ge211::Position Geometry::paddle_top_left0() const noexcept

@@ -73,6 +73,8 @@ struct Model
 
     std::vector<Laser> hero_lasers;
 
+    std::vector<Block> barriers_;
+
     bool no_lasers();
 
     void who_shoots();
@@ -100,6 +102,7 @@ struct Model
     bool               game_over;
 
     int                 player_lives;
+
     Block              paddle_;
 
     //direction that the heroes are moving.

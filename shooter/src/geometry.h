@@ -29,6 +29,8 @@ struct Geometry
     // Dimension of laser
     ge211::Dimensions laser_dims_;
 
+    ge211::Dimensions barrier_dims;
+
     // Number of columns of heroes:
     int hero_cols;
 
