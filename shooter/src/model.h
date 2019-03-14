@@ -86,7 +86,6 @@ struct Model
         hero_lasers.push_back(laser);
     }
 
-   // void switch_shooter();
 
 
 
@@ -95,7 +94,7 @@ struct Model
     /// MEMBER VARIABLES
     ///
 
-    Laser               ball_;
+    Laser               laser_;
     Geometry const     geometry_;
 
 

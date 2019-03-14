@@ -8,7 +8,7 @@ Model::Model(Geometry const& geometry)
         , score(0)
         , paddle_(Block::from_top_left(geometry_.paddle_top_left0(),
                                        geometry_.player_dims_))
-        , ball_(paddle_, geometry_)
+        , laser_(paddle_, geometry_)
         , counter(0)
         , hero_velocity(1)
         , game_over(false)
@@ -66,40 +66,40 @@ Model::Model(Geometry const& geometry)
 
 void Model::launch()
 {
-    ball_.live_ = true;
+    laser_.live_ = true;
 }
 
 void Model::move_player_right(){
     paddle_.x += 20;
-    if(!ball_.live_)
-        ball_.center_.x += 20;
+    if(!laser_.live_)
+        laser_.center_.x += 20;
 }
 
 void Model::move_player_left() {
     paddle_.x -= 20;
-    if(!ball_.live_)
-        ball_.center_.x -= 20;
+    if(!laser_.live_)
+        laser_.center_.x -= 20;
 }
 
 void Model::update(){
-    if(!ball_.live_)
+    if(!laser_.live_)
         return;
     else{
-        Laser newball = ball_.next();
+        Laser newlaser = laser_.next();
 
-        if(newball.hits_top(geometry_)) {
-            ball_ = Laser(paddle_, geometry_);
+        if(newlaser.hits_top(geometry_)) {
+            laser_ = Laser(paddle_, geometry_);
             return;
         }
-        if(newball.destroy_hero(heroes_,score, hero_velocity)) {
-            ball_ = Laser(paddle_, geometry_);
+        if(newlaser.destroy_hero(heroes_,score, hero_velocity)) {
+            laser_ = Laser(paddle_, geometry_);
             return;
         }
-        if(newball.destroy_barrier(barriers_)){
-            ball_ = Laser(paddle_, geometry_);
+        if(newlaser.destroy_barrier(barriers_)){
+            laser_ = Laser(paddle_, geometry_);
             return;
         }
-        ball_ = ball_.next();
+        laser_ = laser_.next();
     }
 }
 
