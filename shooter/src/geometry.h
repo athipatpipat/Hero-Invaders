@@ -13,7 +13,7 @@ struct Geometry
 
 
     ///Member Variables
-
+    ge211::Dimensions barrier_dims;
     // The dimensions of the whole window:
     ge211::Dimensions scene_dims;
 
@@ -26,10 +26,11 @@ struct Geometry
     // heroes:
     ge211::Dimensions hero_spacing;
 
+
     // Dimension of laser
     ge211::Dimensions laser_dims_;
 
-    ge211::Dimensions barrier_dims;
+
 
     // Number of columns of heroes:
     int hero_cols;

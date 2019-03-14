@@ -90,7 +90,7 @@ bool Laser::hits_hero(Block const& block) const
 
 bool Laser::hits_hero(Hero const& block) const
 {
-    if((center_.x + bullet_.width/2 - 20) < block.x || (block.x + block.width) < (center_.x - bullet_.width/2 - 20) || (center_.y +  bullet_.height/2 - 60) < block.y || (block.y+block.height) < (center_.y - bullet_.height/2 - 60)) {
+    if((center_.x + bullet_.width/2) < block.x || (block.x + block.width) < (center_.x - bullet_.width/2) || (center_.y +  bullet_.height/2 - 60) < block.y || (block.y+block.height) < (center_.y - bullet_.height/2 - 60)) {
         return false;
     }
     else
@@ -102,7 +102,7 @@ bool Laser::destroy_hero(std::vector<Hero>& heroes, size_t& score, float& veloci
 {
     for(Hero &hero : heroes ){
         if(hits_hero(hero)){
-            velocity += 0.2;
+            velocity += 0.05;
             switch(hero.type){
                 case 1: score += 30;
                 break;
@@ -124,7 +124,7 @@ bool Laser::destroy_hero(std::vector<Hero>& heroes, size_t& score, float& veloci
 
 bool Laser::hits_player(Block const& paddle) const
 {
-    if((center_.x + bullet_.width/2 ) < paddle.x || (paddle.x + paddle.width) < (center_.x - bullet_.width/2 ) || (center_.y +  bullet_.height/2 ) < paddle.y || (paddle.y+paddle.height) < (center_.y - bullet_.height/2 ))
+    if((center_.x + bullet_.width/2 ) < paddle.x || (paddle.x + paddle.width) < (center_.x - bullet_.width/2) || (center_.y +  bullet_.height/2) < paddle.y || (paddle.y+paddle.height) < (center_.y - bullet_.height/2))
         return false;
     else
         return true;
@@ -137,10 +137,10 @@ bool Laser::destroy_player(Block& paddle) const
 }
 
 bool Laser::hits_barrier(Block const& brick) const {
-    if ((center_.x + bullet_.width / 2 - 20) < brick.x ||
-        (brick.x + brick.width) < (center_.x - bullet_.width / 2 - 20) ||
-        (center_.y + bullet_.height / 2 - 60) < brick.y ||
-        (brick.y + brick.height) < (center_.y - bullet_.height / 2 - 60))
+    if ((center_.x + bullet_.width / 2) < brick.x ||
+        (brick.x + brick.width) < (center_.x - bullet_.width / 2 ) ||
+        (center_.y + (bullet_.height /2) - 60) < brick.y ||
+        (brick.y + brick.height) < (center_.y - (bullet_.height/2) - 60))
         return false;
     else
         return true;
@@ -150,7 +150,7 @@ bool Laser::hero_hits_barrier(Block const& brick) const {
     if ((center_.x + bullet_.width / 2) < brick.x ||
         (brick.x + brick.width) < (center_.x - bullet_.width / 2) ||
         (center_.y + bullet_.height / 2) < brick.y ||
-        (brick.y + brick.height) < (center_.y - bullet_.height / 2))
+        (brick.y + brick.height) < (center_.y - bullet_.height / 2 ))
         return false;
     else
         return true;

@@ -10,9 +10,9 @@ Model::Model(Geometry const& geometry)
                                        geometry_.player_dims_))
         , ball_(paddle_, geometry_)
         , counter(0)
-        , hero_velocity(3)
+        , hero_velocity(1)
         , game_over(false)
-        , player_lives(10)
+        , player_lives(3)
 
 {
     /*
@@ -204,7 +204,7 @@ void Model::hero_shoot() {
                     hero_lasers[i].live_ = true;
                 }
             return;
-            }
+        }
 
         if (new_laser.destroy_barrier(barriers_)){
             hero_lasers[i] = Laser(heroes_[i],geometry_);
