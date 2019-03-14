@@ -17,7 +17,7 @@ using Block = ge211::Rectangle;
 // The keyword `extern` is what prevents this declaration from being
 // a definition. That is, this declaration informs subsequent code about
 // the existence of these constants without actually defining them here.
-extern ge211::Color const paddle_color, barrier_color, laser_color;
+extern ge211::Color const player_color, barrier_color, laser_color;
 
 struct Ui : ge211::Abstract_game
 {
@@ -35,10 +35,7 @@ struct Ui : ge211::Abstract_game
     // (GE211 calls this to find out how big to make the window.)
     ge211::Dimensions initial_window_dimensions() const override;
 
-    // Renders all the game entities to the screen. In particular,
-    // ball_sprite_ is placed at the ball's bounding box's top-left,
-    // paddle_sprite_ is placed where the model says the paddle is,
-    // and brick_sprite_ is placed for each brick in model_.bricks.
+    // Renders all the game entities to the screen.
     void draw(ge211::Sprite_set&) override;
 
     void on_key(ge211::Key) override;
@@ -55,7 +52,7 @@ struct Ui : ge211::Abstract_game
             laser_sprite_ {model_.geometry_.laser_dims_, laser_color};
 
     ge211::Rectangle_sprite const
-            player_sprite_  {model_.geometry_.player_dims_, paddle_color};
+            player_sprite_  {model_.geometry_.player_dims_, player_color};
 
     ge211::Rectangle_sprite const
             barrier_sprite_ {model_.geometry_.barrier_dims, barrier_color};

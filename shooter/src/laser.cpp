@@ -30,10 +30,10 @@ static ge211::Position below_block(Hero const& hero,
 
 
 
-Laser::Laser(Block const& paddle, Geometry const& geometry)
+Laser::Laser(Block const& player, Geometry const& geometry)
         : bullet_   (geometry.laser_dims_)
         , velocity_ (geometry.laser_velocity0)
-        , center_   (above_block(paddle, geometry).x, above_block(paddle, geometry).y )
+        , center_   (above_block(player, geometry).x, above_block(player, geometry).y )
         , live_     (false)
 {}
 
@@ -112,17 +112,17 @@ bool Laser::destroy_hero(std::vector<Hero>& heroes, size_t& score, float& veloci
     return false;
 }
 
-bool Laser::hits_player(Block const& paddle) const
+bool Laser::hits_player(Block const& player) const
 {
-    if((center_.x + bullet_.width/2 ) < paddle.x || (paddle.x + paddle.width) < (center_.x - bullet_.width/2) || (center_.y +  bullet_.height/2) < paddle.y || (paddle.y+paddle.height) < (center_.y - bullet_.height/2))
+    if((center_.x + bullet_.width/2 ) < player.x || (player.x + player.width) < (center_.x - bullet_.width/2) || (center_.y +  bullet_.height/2) < player.y || (player.y+player.height) < (center_.y - bullet_.height/2))
         return false;
     else
         return true;
 }
 
-bool Laser::destroy_player(Block& paddle) const
+bool Laser::destroy_player(Block& player) const
 {
-    if(hits_player(paddle)){
+    if(hits_player(player)){
     }
 }
 

@@ -23,7 +23,7 @@ Geometry::Geometry() noexcept
         , barrier_dims {33,33}
 { }
 
-ge211::Position Geometry::paddle_top_left0() const noexcept
+ge211::Position Geometry::player_top_left0() const noexcept
 {
     return { scene_dims.width / 2,
              scene_dims.height - bottom_margin - player_dims_.height };

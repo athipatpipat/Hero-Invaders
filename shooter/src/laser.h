@@ -18,7 +18,7 @@ struct Laser
 {
     ///Constructor
 
-    Laser(Block const& paddle, Geometry const&);
+    Laser(Block const& player, Geometry const&);
     Laser(Hero const& hero, Geometry const&);
 
 
@@ -31,8 +31,8 @@ struct Laser
     bool hits_hero(Hero const& block) const;
     bool destroy_hero(std::vector<Hero>& heroes, size_t & score, float& velocity) const;
 
-    bool hits_player(Block const& paddle) const;
-    bool destroy_player(Block& paddle) const;
+    bool hits_player(Block const& player) const;
+    bool destroy_player(Block& player) const;
 
     bool hero_hits_barrier(Block const& brick) const;
     bool hits_barrier(Block const& brick) const;

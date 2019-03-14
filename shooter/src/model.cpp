@@ -6,9 +6,9 @@ Model::Model(Geometry const& geometry)
         : geometry_(geometry)
         , hero_direction(true)
         , score(0)
-        , paddle_(Block::from_top_left(geometry_.paddle_top_left0(),
+        , player_(Block::from_top_left(geometry_.player_top_left0(),
                                        geometry_.player_dims_))
-        , laser_(paddle_, geometry_)
+        , laser_(player_, geometry_)
         , counter(0)
         , hero_velocity(1)
         , game_over(false)
@@ -70,13 +70,13 @@ void Model::launch()
 }
 
 void Model::move_player_right(){
-    paddle_.x += 20;
+    player_.x += 20;
     if(!laser_.live_)
         laser_.center_.x += 20;
 }
 
 void Model::move_player_left() {
-    paddle_.x -= 20;
+    player_.x -= 20;
     if(!laser_.live_)
         laser_.center_.x -= 20;
 }
@@ -88,15 +88,15 @@ void Model::update(){
         Laser newlaser = laser_.next();
 
         if(newlaser.hits_top(geometry_)) {
-            laser_ = Laser(paddle_, geometry_);
+            laser_ = Laser(player_, geometry_);
             return;
         }
         if(newlaser.destroy_hero(heroes_,score, hero_velocity)) {
-            laser_ = Laser(paddle_, geometry_);
+            laser_ = Laser(player_, geometry_);
             return;
         }
         if(newlaser.destroy_barrier(barriers_)){
-            laser_ = Laser(paddle_, geometry_);
+            laser_ = Laser(player_, geometry_);
             return;
         }
         laser_ = laser_.next();
@@ -157,8 +157,6 @@ void Model::update_hero(){
     }
 }
 
-
-
 void Model::who_shoots(){
     std::srand(std::time(0));
     for (size_t i = 0; i < hero_lasers.size(); i++) {
@@ -204,7 +202,7 @@ void Model::hero_shoot() {
             hero_lasers[i].live_ = true;
             return;
         }
-        if (new_laser.destroy_player(paddle_)) {
+        if (new_laser.destroy_player(player_)) {
             hero_lasers[i] = Laser(heroes_[i], geometry_);
             hero_lasers[i].live_ = true;
             player_lives--;

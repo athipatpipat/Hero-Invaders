@@ -92,7 +92,7 @@ struct Model
 
     int                 player_lives;
 
-    Block              paddle_;
+    Block              player_;
 
     //direction that the heroes are moving.
     //true means right

@@ -4,7 +4,7 @@
 
 using Position = ge211:: Basic_position<float>;
 using Dimensions = ge211:: Basic_dimensions<float>;
-using Rectangle = ge211:: Basic_rectangle<float>;
+
 
 struct Geometry
 {
@@ -47,7 +47,7 @@ struct Geometry
     // Number of pixels from *top* of screen to *bottom* of heroes formation.
     int hero_depth;
 
-    // Number of pixels from bottom of screen to bottom of paddle.
+    // Number of pixels from bottom of screen to bottom of player.
     int bottom_margin;
 
     // Number of pixel from top of screen to top of barrier
@@ -64,7 +64,7 @@ struct Geometry
 
     // The initial position of the player. This is a member function because
     // it's computed from the other properties.
-    ge211::Position paddle_top_left0() const noexcept;
+    ge211::Position player_top_left0() const noexcept;
 
     // The dimensions of each hero. Also computed from the other properties.
 
