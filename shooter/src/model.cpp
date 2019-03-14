@@ -12,22 +12,9 @@ Model::Model(Geometry const& geometry)
         , counter(0)
         , hero_velocity(1)
         , game_over(false)
-        , player_lives(50)
+        , player_lives(3)
 
 {
-    /*
-    for(size_t i = 0; i < geometry_.hero_cols; i++){
-        for(size_t j = 0; j < geometry_.hero_rows; j++){
-            Block hero;
-            size_t x = (i * (geometry_.hero_spacing.width + geometry_.hero_dims().width));
-            size_t y = (j * (geometry_.hero_spacing.height + geometry_.hero_dims().height));
-            hero= Block::from_top_left({(geometry_.side_margin + x), (geometry_.top_margin + y)}, geometry_.hero_dims());
-            heroes_.push_back(hero);
-            //change hero type here
-        }
-    }
-    */
-
     std::srand(std::time(0));
     for(size_t j = 0; j < geometry_.hero_rows; j++){
 
@@ -77,7 +64,6 @@ Model::Model(Geometry const& geometry)
     }
 }
 
-
 void Model::launch()
 {
     ball_.live_ = true;
@@ -95,9 +81,7 @@ void Model::move_player_left() {
         ball_.center_.x -= 20;
 }
 
-
 void Model::update(){
-
     if(!ball_.live_)
         return;
     else{
@@ -115,21 +99,17 @@ void Model::update(){
             ball_ = Laser(paddle_, geometry_);
             return;
         }
-
         ball_ = ball_.next();
     }
-
 }
 
 void Model::update_hero(){
-
     if(hero_direction){
         for (size_t i = 0; i < hero_lasers.size(); i++) {
             heroes_[i].x += hero_velocity;
             if(!hero_lasers[i].live_){
                 hero_lasers[i].center_.x += hero_velocity;
             }
-
         }
     }
 
@@ -183,18 +163,9 @@ void Model::update_hero(){
 
 void Model::who_shoots(){
     std::srand(std::time(0));
-      //TrueFalse;
-      /*
-    if(TrueFalse){
-        std::cout << "True\n";
-    }else{
-        std::cout << "False\n";
-    }
-       */
-
     for (size_t i = 0; i < hero_lasers.size(); i++) {
         if(heroes_[i].live){
-            bool TrueFalse = (std::rand() % 100) < 3;
+            bool TrueFalse = (std::rand() % 100) < 6;
             heroes_[i].shooting = TrueFalse;
             if(heroes_[i].shooting){
                 hero_lasers[i].live_ = true;
@@ -202,27 +173,13 @@ void Model::who_shoots(){
 
         }
     }
-
-    /*
-    for(Hero& hero:heroes_){
-        if(hero.live){
-            bool TrueFalse = (std::rand() % 100) < 5;
-            hero.shooting = TrueFalse;
-
-        }
-    }
-     */
 }
 
-
 void Model::hero_shoot() {
-
     for (size_t i = 0; i < hero_lasers.size(); i++) {
-
         if(!hero_lasers[i].live_){
             continue;
         }
-
         //if hero can shoot, but laser is not live, this check doesn't stop it from moving the laser
         if ((!heroes_[i].live && !heroes_[i].shooting)) {
             if (hero_lasers[i].live_) {
@@ -231,7 +188,6 @@ void Model::hero_shoot() {
                 continue;
             }
         }
-
         Laser new_laser = hero_lasers[i].next();
 
         if (new_laser.hits_bottom(geometry_)) {
