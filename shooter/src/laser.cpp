@@ -33,14 +33,14 @@ static ge211::Position below_block(Hero const& hero,
 Laser::Laser(Block const& paddle, Geometry const& geometry)
         : bullet_   (geometry.laser_dims_)
         , velocity_ (geometry.laser_velocity0)
-        , center_   (above_block(paddle, geometry))
+        , center_   (above_block(paddle, geometry).x, above_block(paddle, geometry).y )
         , live_     (false)
 {}
 
 Laser::Laser(Hero const& hero, Geometry const& geometry)
         : bullet_   (geometry.laser_dims_)
         , velocity_ (geometry.laser_velocity_hero)
-        , center_   (below_block(hero, geometry))
+        , center_   (below_block(hero, geometry).x, below_block(hero, geometry).y)
         , live_     (false)
 {}
 
@@ -48,7 +48,7 @@ Laser::Laser(Hero const& hero, Geometry const& geometry)
 
 ge211::Position Laser::top_left() const //since we are using this to draw, we must change this as position of player changes
 {
-    ge211::Position pos = center_;
+    ge211::Position pos = {static_cast<int>(center_.x),static_cast<int>(center_.y)};
 
     pos = pos.up_by(bullet_.height/2).left_by(bullet_.width/2);
     return pos;

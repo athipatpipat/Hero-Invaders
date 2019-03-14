@@ -47,7 +47,7 @@ struct Laser
     ge211::Dimensions velocity_;
 
     // The position of the center of the ball.
-    ge211::Position   center_;
+    Position   center_;
 
     // Whether the laser is moving freely (true) or has not been shot yet (false).
     bool              live_;
