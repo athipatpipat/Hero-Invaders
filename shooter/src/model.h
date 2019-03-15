@@ -33,42 +33,56 @@ struct Model
     ///
     /// MEMBER FUNCTIONS
     ///
-    // will be used to move player to the right when right arrow key is pressed
-    void move_player_right();
-    // will be used to move player to the right when left arrow key is pressed
-    void move_player_left();
-    // makes lasers shoot
-    void launch();
-    // updates the status of the player's laser
-    void update();
-    // updates the status of the heroes
-    void update_hero();
-    // makes the hero shoot
-    void hero_shoot();
-    // changes which hero shoots randomly
-    void who_shoots();
+
     // adds heroes to the hero vector
     void addHero(Hero &hero) {
         heroes_.push_back(hero);
     }
+
     // adds lasers to the heroes' laser vector
     void addLaser(Laser &laser) {
         hero_lasers.push_back(laser);
     }
 
+    // makes lasers shoot
+    void launch();
+
+    // will be used to move player to the right when right arrow key is pressed
+    void move_player_right();
+
+    // will be used to move player to the right when left arrow key is pressed
+    void move_player_left();
+
+    // updates the status of the player's laser
+    void update();
+
+    // updates the status of the heroes
+    void update_hero();
+
+    // changes which hero shoots randomly
+    void who_shoots();
+
+    // makes the hero shoot
+    void hero_shoot();
 
     ///
     /// MEMBER VARIABLES
     ///
-    // vector for heroes
-    std::vector<Hero> heroes_;
-    // vector for heroes' lasers
-    std::vector<Laser> hero_lasers;
-    // vector for the barriers
-    std::vector<Block> barriers_;
 
     // position and dimensions of the lasers
     Laser               laser_;
+
+    //used to determine the types of heroes
+    size_t              counter;
+
+    // vector for heroes
+    std::vector<Hero> heroes_;
+
+    // vector for heroes' lasers
+    std::vector<Laser> hero_lasers;
+
+    // vector for the barriers
+    std::vector<Block> barriers_;
 
     // the geometry parameters of the model
     Geometry const     geometry_;
@@ -92,8 +106,5 @@ struct Model
 
     // velocity of the heroes
     float             hero_velocity;
-
-    //used to determine the types of heroes
-    size_t              counter;
 };
 

@@ -24,8 +24,6 @@ public:
         return {x,y+height};
     }
 
-
-
     //X coordinate of hero's center
     float x;
 

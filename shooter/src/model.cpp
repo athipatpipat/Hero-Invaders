@@ -38,7 +38,6 @@ Model::Model(Geometry const& geometry)
                 break;
             }
             bool TrueFalse = (std::rand() % 100) < 10;
-
             hero.shooting = TrueFalse;
 
             if(hero.shooting){

@@ -16,28 +16,24 @@ ge211::Dimensions Ui::initial_window_dimensions() const
 }
 
 void Ui::draw(ge211::Sprite_set& sprites) {
-    ge211::Transform scale;
-    scale.set_scale_x(sprite_scale_width);
-    scale.set_scale_y(sprite_scale_height);
-    ge211::Transform player_scale;
-    player_scale.set_scale(thanos_scale);
-
     auto str_score = std::to_string(model_.score);
     score_ = ge211::Text_sprite("Score: " + str_score, ge211::Font("sans.ttf", 20));
 
     auto str_live = std::to_string(model_.player_lives);
     lives_ = ge211::Text_sprite("Lives: " + str_live, ge211::Font("sans.ttf", 20));
 
+    ge211::Transform scale;
+    scale.set_scale_x(sprite_scale_width);
+    scale.set_scale_y(sprite_scale_height);
+    ge211::Transform player_scale;
+    player_scale.set_scale(thanos_scale);
 
     if (!model_.game_over) {
         sprites.add_sprite(laser_sprite_, model_.laser_.top_left().up_by(60));
-        sprites.add_sprite(player_sprite_, model_.player_.top_left());
+        //sprites.add_sprite(player_sprite_, model_.player_.top_left());
         sprites.add_sprite(thanos_, model_.player_.top_left().up_by(75), 0, player_scale);
         sprites.add_sprite(score_, model_.geometry_.score_board);
         sprites.add_sprite(lives_, model_.geometry_.live_count);
-
-
-
         for (size_t i = 0; i < model_.hero_lasers.size(); i++) {
              if (model_.hero_lasers[i].live_) {
                     sprites.add_sprite(laser_sprite_, {static_cast<int>(model_.hero_lasers[i].center_.x), static_cast<int>(model_.hero_lasers[i].center_.y)});

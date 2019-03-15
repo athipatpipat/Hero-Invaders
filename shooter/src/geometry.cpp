@@ -23,7 +23,6 @@ Geometry::Geometry() noexcept
         , barrier_dims {33,33}
 { }
 
-
 //Computes the top left position of the player
 ge211::Position Geometry::player_top_left0() const noexcept
 {
