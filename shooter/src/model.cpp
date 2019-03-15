@@ -18,6 +18,7 @@ Model::Model(Geometry const& geometry)
 {
     Laser laser1(player_,geometry);
     laser_ = laser1;
+
     std::srand(std::time(0));
     for(size_t j = 0; j < geometry_.hero_rows; j++){
 
@@ -67,8 +68,6 @@ Model::Model(Geometry const& geometry)
 
 void Model::launch()
 {
-   // laser_.center_.x = player_.x;
-   // laser_.center_.y = player_.y;
     laser_.live_ = true;
 }
 
@@ -78,7 +77,7 @@ void Model::move_player_right(){
         laser_.center_.x += 20;
 }
 
-// will be used to move player to the right when left arrow key is pressed
+
 void Model::move_player_left() {
     player_.x -= 20;
     if(!laser_.live_)
@@ -89,7 +88,6 @@ void Model::update(){
     if(!laser_.live_)
         return;
     else{
-        std::cout << "lasering" << laser_.velocity_.height << " " << laser_.top_left().x << " " << laser_.top_left().y << "\n";
         Laser newlaser = laser_.next();
 
         if(newlaser.hits_top(geometry_)) {
@@ -126,7 +124,7 @@ void Model::update_hero(){
             }
         }
     }
-    //check if any hero have gone past right side
+
     for(Hero& hero:heroes_){
         if(hero.x + hero.width > geometry_.scene_dims.width){
             hero_direction = false;

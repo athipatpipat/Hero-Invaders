@@ -32,7 +32,7 @@ Laser::Laser(Block const& player, Geometry const& geometry)
         , center_   (above_block(player, geometry).x, above_block(player, geometry).y )
         , live_     (false)
 {
-    std::cout << "new laser! : "<<  center_.x << "," << center_.y << "\n";
+
 
 
 }
