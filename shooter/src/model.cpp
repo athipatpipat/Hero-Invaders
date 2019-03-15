@@ -9,13 +9,15 @@ Model::Model(Geometry const& geometry)
         , score(0)
         , player_(Block::from_top_left(geometry_.player_top_left0(),
                                        geometry_.player_dims_))
-        , laser_(player_, geometry_)
+        , laser_(player_, geometry)
         , counter(0)
         , hero_velocity(1)
         , game_over(false)
         , player_lives(3)
 
 {
+    Laser laser1(player_,geometry);
+    laser_ = laser1;
     std::srand(std::time(0));
     for(size_t j = 0; j < geometry_.hero_rows; j++){
 
@@ -65,6 +67,8 @@ Model::Model(Geometry const& geometry)
 
 void Model::launch()
 {
+   // laser_.center_.x = player_.x;
+   // laser_.center_.y = player_.y;
     laser_.live_ = true;
 }
 
@@ -85,6 +89,7 @@ void Model::update(){
     if(!laser_.live_)
         return;
     else{
+        std::cout << "lasering" << laser_.velocity_.height << " " << laser_.top_left().x << " " << laser_.top_left().y << "\n";
         Laser newlaser = laser_.next();
 
         if(newlaser.hits_top(geometry_)) {

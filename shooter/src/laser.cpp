@@ -31,7 +31,11 @@ Laser::Laser(Block const& player, Geometry const& geometry)
         , velocity_ (geometry.laser_velocity0)
         , center_   (above_block(player, geometry).x, above_block(player, geometry).y )
         , live_     (false)
-{}
+{
+    std::cout << "new laser! : "<<  center_.x << "," << center_.y << "\n";
+
+
+}
 
 Laser::Laser(Hero const& hero, Geometry const& geometry)
         : bullet_   (geometry.laser_dims_)
