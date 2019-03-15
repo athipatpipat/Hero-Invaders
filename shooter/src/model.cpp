@@ -160,7 +160,7 @@ void Model::who_shoots(){
     std::srand(std::time(0));
     for (size_t i = 0; i < hero_lasers.size(); i++) {
         if(heroes_[i].live){
-            bool TrueFalse = (std::rand() % 100) < 6;
+            bool TrueFalse = (std::rand() % 100) < 8;
             heroes_[i].shooting = TrueFalse;
             if(heroes_[i].shooting){
                 hero_lasers[i].live_ = true;

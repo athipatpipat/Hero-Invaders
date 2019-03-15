@@ -66,12 +66,14 @@ void Ui::draw(ge211::Sprite_set& sprites) {
 
 void Ui::on_key(ge211::Key key)
 {
+    if (key == ge211::Key::code(' ')) {
+        model_.launch();
+    }
     if (key == ge211::Key::left()){
         model_.move_player_left();
-    } else if(key == ge211::Key::right()){
+    }
+    if(key == ge211::Key::right()){
         model_.move_player_right();
-    } else if (key == ge211::Key::code(' ')) {
-        model_.launch();
     }
 }
 
