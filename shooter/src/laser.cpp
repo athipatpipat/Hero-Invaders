@@ -33,8 +33,6 @@ Laser::Laser(Block const& player, Geometry const& geometry)
         , live_     (false)
 {
 
-
-
 }
 
 Laser::Laser(Hero const& hero, Geometry const& geometry)
@@ -85,7 +83,7 @@ bool Laser::destroy_hero(std::vector<Hero>& heroes, size_t& score, float& veloci
 {
     for(Hero &hero : heroes ){
         if(hits_hero(hero)){
-            velocity += 0.05;
+            velocity += 0.1;
             switch(hero.type){
                 case 1: score += 30;
                 break;

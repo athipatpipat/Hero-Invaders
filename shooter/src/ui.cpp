@@ -30,7 +30,6 @@ void Ui::draw(ge211::Sprite_set& sprites) {
 
     if (!model_.game_over) {
         sprites.add_sprite(laser_sprite_, model_.laser_.top_left().up_by(60));
-        //sprites.add_sprite(player_sprite_, model_.player_.top_left());
         sprites.add_sprite(thanos_, model_.player_.top_left().up_by(75), 0, player_scale);
         sprites.add_sprite(score_, model_.geometry_.score_board);
         sprites.add_sprite(lives_, model_.geometry_.live_count);
