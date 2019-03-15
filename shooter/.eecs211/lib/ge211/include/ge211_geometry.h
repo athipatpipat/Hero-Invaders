@@ -2,8 +2,11 @@
 
 #include "ge211_forward.h"
 #include "ge211_util.h"
+
 #include <SDL_rect.h>
+
 #include <type_traits>
+#include <utility>
 
 namespace ge211 {
 
@@ -130,7 +133,7 @@ Basic_dimensions<T> operator*(double s1, Basic_dimensions<T> d2)
 ///  - `z` cannot be `0` if `T` is an integral type.
 template <class T>
 Basic_dimensions<T> operator/(Basic_dimensions<T> d1, T s2)
-    noexcept(has_nothrow_division<double, T>())
+    noexcept(has_nothrow_division<T>())
 {
     return {d1.width / s2, d1.height / s2};
 }
@@ -498,9 +501,23 @@ struct Basic_rectangle
     /// The position of the center of the rectangle.
     Position center() const
         noexcept(has_nothrow_arithmetic<Coordinate>() &&
-                 has_nothrow_division<Coordinate, int>())
+                 has_nothrow_division<Coordinate>())
     {
         return top_left().down_right_by(dimensions() / Coordinate(2));
+    }
+
+    class iterator;
+
+    /// Returns an `iterator` to the top left corner of this rectangle.
+    iterator begin() const
+    {
+        return {top_left(), y, y + height};
+    }
+
+    /// Returns an `iterator` one past the end of this rectangle.
+    iterator end() const
+    {
+        return {top_left().right_by(width), y, y + height};
     }
 
 private:
@@ -541,11 +558,101 @@ return r1.x == r2.x &&
 /// Disequality for rectangles.
 template <class T>
 bool operator!=(const Basic_rectangle<T> &r1,
-                const Basic_rectangle<T> r2)
+                const Basic_rectangle<T> &r2)
     noexcept(is_nothrow_comparable<T>())
 {
     return !(r1 == r2);
 }
+
+/// An iterator over the `Basic_position<T>`s of a `Basic_rectangle<T>`.
+///
+/// Iterates in column-major order.
+template <class T>
+class Basic_rectangle<T>::iterator
+        : public std::iterator<
+                std::input_iterator_tag,
+                typename Basic_rectangle<T>::Position const >
+{
+public:
+
+    /// Returns the current `Position` of this iterator.
+    Position operator*() const
+    {
+        return current_;
+    }
+
+    /// Returns a pointer to the current `Position` of this iterator.
+    Position const* operator->() const
+    {
+        return &current_;
+    }
+
+    /// Pre-increments, advancing this iterator to the next `Position`.
+    iterator& operator++()
+    {
+        if (++current_.y >= y_end_) {
+            ++current_.x;
+            current_.y = y_begin_;
+        }
+
+        return *this;
+    }
+
+    /// Pre-decrements, retreating this iterator to the previous `Position`.
+    iterator& operator--()
+    {
+        if (current_.y == y_begin_) {
+            current_.y = y_end_;
+            --current_.x;
+        }
+
+        --current_.y;
+
+        return *this;
+    }
+
+    /// Post-increments, advancing this iterator to the next `Position`.
+    iterator operator++(int)
+    {
+        iterator result(*this);
+        ++*this;
+        return result;
+    }
+
+    /// Post-decrements, retreating this iterator to the previous `Position`.
+    iterator operator--(int)
+    {
+        iterator result(*this);
+        --*this;
+        return result;
+    }
+
+    /// Compares whether two iterators are equal. Considers only the current
+    /// position, not the bounds of the stripe we're iterating through.
+    bool operator==(iterator const& that) const
+    {
+        return **this == *that;
+    }
+
+    /// Iterator inequality.
+    bool operator!=(iterator const& that) const
+    {
+        return !(*this == that);
+    }
+
+private:
+    friend Basic_rectangle<T>;
+
+    iterator(Position current, Coordinate y_begin, Coordinate y_end)
+            : current_(current)
+            , y_begin_(y_begin)
+            , y_end_(y_end)
+    { }
+
+    Position    current_;
+    Coordinate  y_begin_;
+    Coordinate  y_end_;
+};
 
 /// A rendering transform, which can scale, flip, and rotate. A Transform
 /// can be given to
@@ -679,4 +786,22 @@ bool operator!=(const Transform&, const Transform&) noexcept;
 
 } // end namespace geometry.
 
-}
+} // end namespace ge211
+
+// specializations in std:
+namespace std
+{
+
+template <class T>
+struct hash<ge211::Basic_position<T>>
+{
+    std::size_t operator()(ge211::Basic_position<T> pos) const noexcept
+    {
+        return hash_t_(pos.x) * 31 ^ hash_t_(pos.y);
+    }
+
+private:
+    std::hash<T> hash_t_;
+};
+
+} // end namespace std
