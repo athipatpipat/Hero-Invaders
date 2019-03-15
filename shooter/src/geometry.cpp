@@ -1,8 +1,8 @@
 
 #include "geometry.h"
 
-// This is the default (and only) constructor for `Geometry`. It determines
-// all the default values of all the member variables.
+//Default constructor for `Geometry`.
+//Determines all the default values of all the member variables.
 Geometry::Geometry() noexcept
         : hero_cols     {   11 }
         , hero_rows     {   5}
@@ -23,13 +23,15 @@ Geometry::Geometry() noexcept
         , barrier_dims {33,33}
 { }
 
+
+//Computes the top left position of the player
 ge211::Position Geometry::player_top_left0() const noexcept
 {
     return { scene_dims.width / 2,
              scene_dims.height - bottom_margin - player_dims_.height };
 }
 
-// Computes how large each hero can be (in a given dimension), given the
+// Computes how large each hero can be given the
 // total number of pixels available in that dimension, the number of heroes
 // in that dimensions, and the number of space pixels to leave in between.
 
