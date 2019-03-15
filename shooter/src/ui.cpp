@@ -6,9 +6,6 @@ ge211::Color const player_color  {255, 255, 127};
 ge211::Color const laser_color    {255, 127, 127};
 ge211::Color const barrier_color {105, 105, 105};
 
-// Data members that are references cannot be initialized by assignment
-// in the constructor body and must be initialized in a member
-// initializer list.
 Ui::Ui(Model& model)
         : model_(model)
 { }
@@ -34,16 +31,16 @@ void Ui::draw(ge211::Sprite_set& sprites) {
 
     if (!model_.game_over) {
         sprites.add_sprite(laser_sprite_, model_.laser_.top_left().up_by(60));
-       // sprites.add_sprite(player_sprite_, model_.player_.top_left());
+
         sprites.add_sprite(thanos_, model_.player_.top_left().up_by(75), 0, player_scale);
         sprites.add_sprite(score_, model_.geometry_.score_board);
         sprites.add_sprite(lives_, model_.geometry_.live_count);
 
 
         for (size_t i = 0; i < model_.hero_lasers.size(); i++) {
-         if (model_.hero_lasers[i].live_) {
-                sprites.add_sprite(laser_sprite_, {static_cast<int>(model_.hero_lasers[i].center_.x), static_cast<int>(model_.hero_lasers[i].center_.y)});
-         }
+             if (model_.hero_lasers[i].live_) {
+                    sprites.add_sprite(laser_sprite_, {static_cast<int>(model_.hero_lasers[i].center_.x), static_cast<int>(model_.hero_lasers[i].center_.y)});
+             }
         }
 
         for(Block barrier:model_.barriers_){
@@ -51,8 +48,7 @@ void Ui::draw(ge211::Sprite_set& sprites) {
         }
 
         for (Hero &hero:model_.heroes_) {
-            //make an if statement to check type of hero
-            /*sprites.add_sprite(brick_sprite_, ge211::Position(hero.x,hero.y));*/
+
             if (hero.type == 1)
                 sprites.add_sprite(batman_, ge211::Position(hero.x, hero.y), 0, scale);
             if (hero.type == 2)

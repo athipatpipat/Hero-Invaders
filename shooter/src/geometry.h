@@ -12,62 +12,61 @@ struct Geometry
     Geometry() noexcept;
 
     ///Member Variables
+    //Dimension of barrier
     ge211::Dimensions barrier_dims;
 
-    // The dimensions of the whole window:
+    //Dimensions of the whole window:
     ge211::Dimensions scene_dims;
 
-    ge211::Position center;
-
-    // The dimensions of the player (the "villain" at the bottom):
+    // The dimensions of the player
     ge211::Dimensions player_dims_;
 
-    // The number of pixels of space between each column and row of
-    // heroes:
+    // The number of pixels of space between each column and row of heroes
     ge211::Dimensions hero_spacing;
 
+    //Center of the screen
+    ge211::Position center;
 
-    // Dimension of laser
+    //Dimension of laser
     ge211::Dimensions laser_dims_;
 
-
-
-    // Number of columns of heroes:
+    // Number of columns of heroes
     int hero_cols;
 
-    // Number of rows of heroes:
+    // Number of rows of heroes
     int hero_rows;
 
-    // Number of pixels from top of screen to top of heroes formation:
+    // Number of pixels from top of screen to top of heroes formation
     int top_margin;
 
-    // Number of pixels from sides of screen to sides of heroes formation:
+    // Number of pixels from sides of screen to sides of heroes formation
     int side_margin;
 
-    // Number of pixels from *top* of screen to *bottom* of heroes formation.
+    // Number of pixels from top of screen to bottom of heroes formation
     int hero_depth;
 
-    // Number of pixels from bottom of screen to bottom of player.
+    // Number of pixels from bottom of screen to bottom of player
     int bottom_margin;
 
     // Number of pixel from top of screen to top of barrier
     int barrier_top;
 
-
+    // Position of player's score
     ge211::Position score_board;
 
+    // Position of player's live count
     ge211::Position live_count;
 
+    // Velocity of player's laser
     ge211::Dimensions laser_velocity0;
 
+    // Velocity of hero's laser
     ge211::Dimensions laser_velocity_hero;
 
-    // The initial position of the player. This is a member function because
-    // it's computed from the other properties.
+    // The initial position of the player. This value is computed from other member variables
     ge211::Position player_top_left0() const noexcept;
 
-    // The dimensions of each hero. Also computed from the other properties.
-
+    //The dimensions of each hero. Also computed from the other member variables
     Dimensions hero_dims() const noexcept;
 };
 
