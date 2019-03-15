@@ -99,9 +99,12 @@ public:
     uint8_t alpha() const noexcept { return alpha_; };
 
 
-
     /// \name Transformations
     /// @{
+
+    /// Produces a blend of this color and `that`, with higher
+    /// `weight` (between 0 and 1) increasing the level of `that`.
+    Color blend(double weight, Color that) const noexcept;
 
     /// Returns the inverse of a color.
     Color invert() const noexcept;
@@ -148,7 +151,8 @@ public:
     /// Representation for the hue-saturation-lightness-alpha color
     /// model. See [Wikipedia](https://en.wikipedia.org/wiki/HSL_and_HSV)
     /// for details on color models.
-    struct HSLA {
+    struct HSLA
+    {
         /// The hue in degrees from 0 to 360. 0° (and 360°) is red,
         /// 120° is green, and 240° is blue.
         double hue;
@@ -160,6 +164,16 @@ public:
         /// The opacity of the color, from 0.0 (fully transparent) to
         /// 1.0 (fully opaque).
         double alpha;
+
+        /// Constructs a hue-saturation-lightness-alpha color from its
+        /// unit interval components.
+        HSLA(double hue, double saturation, double lightness, double alpha = 1.0)
+        noexcept
+                : hue(hue)
+                , saturation(saturation)
+                , lightness(lightness)
+                , alpha(alpha)
+        { }
 
         /// Converts color to the RGBA color model.
         Color to_rgba() const noexcept;
@@ -213,7 +227,8 @@ public:
     /// Representation for the hue-saturation-value-alpha color
     /// model. See [Wikipedia](https://en.wikipedia.org/wiki/HSL_and_HSV)
     /// for details on color models.
-    struct HSVA {
+    struct HSVA
+    {
         /// The hue in degrees from 0 to 360. 0° (and 360°) is red,
         /// 120° is green, and 240° is blue.
         double hue;
@@ -226,6 +241,16 @@ public:
         /// The opacity of the color, from 0.0 (fully transparent) to
         /// 1.0 (fully opaque).
         double alpha;
+
+        /// Constructs a hue-saturation-value-alpha color from its
+        /// unit interval components.
+        HSVA(double hue, double saturation, double value, double alpha = 1.0)
+        noexcept
+                : hue(hue)
+                , saturation(saturation)
+                , value(value)
+                , alpha(alpha)
+        { }
 
         /// Converts color to the RGBA color model.
         Color to_rgba() const noexcept;

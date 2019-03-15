@@ -68,7 +68,7 @@ struct Model
 {
     vector<Firework> fireworks;
 
-    void update(double const dt);
+    void update(double dt);
     void add_random(Random&, Projectile::Position);
 };
 
@@ -88,8 +88,6 @@ struct View
 
 struct Fireworks : Abstract_game
 {
-    Fireworks() {}
-
     // Model
     Model model;
 
@@ -181,7 +179,7 @@ Firework Firework::random(Random& rng, Projectile::Position p0)
     return Firework{Stage::mortar, mortar, stars, star_color, fuse_seconds};
 }
 
-void Model::update(double const dt)
+void Model::update(double dt)
 {
     for (Firework& firework : fireworks)
         firework.update(dt);
@@ -267,6 +265,7 @@ void Fireworks::on_key(Key key)
 
 void Fireworks::on_frame(double dt)
 {
+
     if (!is_paused)
         model.update(dt);
 }

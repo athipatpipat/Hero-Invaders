@@ -3,21 +3,24 @@
 #include <algorithm>
 #include <cmath>
 #include <tuple>
+#include <ge211_color.h>
+
 
 namespace ge211 {
 
 template<class T, class U>
 static T weighted_average(T t, double weight, U u) noexcept
 {
-    double f1 = static_cast<double>(t);
-    double f2 = static_cast<double>(u);
+    auto f1 = static_cast<double>(t);
+    auto f2 = static_cast<double>(u);
     double result = (1 - weight) * f1 + weight * f2;
     return T(result);
 }
 
-template<class T, class Field>
-static T adjust_field(T result, Field T::*field,
-                      double weight, double goal) noexcept
+template<class Whole, class Field, class Goal>
+static Whole adjust_field(Whole result, Field Whole::*field,
+                          double weight, Goal goal)
+noexcept
 {
     result.*field = weighted_average(result.*field, weight, goal);
     return result;
@@ -82,6 +85,16 @@ Color Color::from_hsva(double hue, double saturation, double value,
     double C = value * saturation;
     double m = value - C;
     return from_hcma(hue, C, m, alpha);
+}
+
+Color Color::blend(double weight, Color that) const noexcept
+{
+    return Color{
+            weighted_average(red(), weight, that.red()),
+            weighted_average(green(), weight, that.green()),
+            weighted_average(blue(), weight, that.blue()),
+            weighted_average(alpha(), weight, that.alpha())
+    };
 }
 
 Color Color::invert() const noexcept
