@@ -27,34 +27,31 @@ struct Model
     ///
 
     // Constructs a model from its geometry.
+    //constructor for the heroes and barriers
     explicit Model(Geometry const& geometry = Geometry());
 
     ///
     /// MEMBER FUNCTIONS
     ///
-
+    // will be used to move player to the right when right arrow key is pressed
     void move_player_right();
+    // will be used to move player to the right when left arrow key is pressed
     void move_player_left();
-
+    // makes lasers shoot
     void launch();
-
+    // updates the status of the player's laser
     void update();
-
+    // updates the status of the heroes
     void update_hero();
-
+    // makes the hero shoot
     void hero_shoot();
-
-    std::vector<Hero> heroes_;
-
-    std::vector<Laser> hero_lasers;
-
-    std::vector<Block> barriers_;
-
+    // changes which hero shoots randomly
     void who_shoots();
-
+    // adds heroes to the hero vector
     void addHero(Hero &hero) {
         heroes_.push_back(hero);
     }
+    // adds lasers to the heroes' laser vector
     void addLaser(Laser &laser) {
         hero_lasers.push_back(laser);
     }
@@ -63,6 +60,12 @@ struct Model
     ///
     /// MEMBER VARIABLES
     ///
+    // vector for heroes
+    std::vector<Hero> heroes_;
+    // vector for heroes' lasers
+    std::vector<Laser> hero_lasers;
+    // vector for the barriers
+    std::vector<Block> barriers_;
 
     // position and dimensions of the lasers
     Laser               laser_;

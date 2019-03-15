@@ -3,12 +3,9 @@
 #include "model.h"
 #include <ge211.h>
 
-
-
 ///
 /// VIEW CONSTANTS
 ///
-
 
 using Block = ge211::Rectangle;
 
@@ -16,7 +13,6 @@ extern ge211::Color const player_color, barrier_color, laser_color;
 
 struct Ui : ge211::Abstract_game
 {
-
     // Constructs a `Ui` given a reference to the model that stores
     // the actual state of the game.
 
@@ -31,7 +27,6 @@ struct Ui : ge211::Abstract_game
 
     // Used to move player sprite
     void on_key(ge211::Key) override;
-
 
     // Used to update game every frame
     void on_frame(double dt) override;
@@ -50,13 +45,10 @@ struct Ui : ge211::Abstract_game
     ge211::Rectangle_sprite const
             barrier_sprite_ {model_.geometry_.barrier_dims, barrier_color};
 
-
-
     //Text on the screen
     ge211::Text_sprite score_;
     ge211::Text_sprite lives_;
     ge211::Text_sprite game_over_msg;
-
 
     //Hero sprites
     ge211::Image_sprite batman_{"batman.png"};

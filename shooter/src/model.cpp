@@ -2,7 +2,7 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
-//constructor for the heroes and barriers
+
 Model::Model(Geometry const& geometry)
         : geometry_(geometry)
         , hero_direction(true)
@@ -64,13 +64,11 @@ Model::Model(Geometry const& geometry)
     }
 }
 
-// makes lasers shoot
 void Model::launch()
 {
     laser_.live_ = true;
 }
 
-// will be used to move player to the right when right arrow key is pressed
 void Model::move_player_right(){
     player_.x += 20;
     if(!laser_.live_)
@@ -84,7 +82,6 @@ void Model::move_player_left() {
         laser_.center_.x -= 20;
 }
 
-// updates the status of the player's laser
 void Model::update(){
     if(!laser_.live_)
         return;
@@ -107,7 +104,6 @@ void Model::update(){
     }
 }
 
-// updates the status of the heroes
 void Model::update_hero(){
     if(hero_direction){
         for (size_t i = 0; i < hero_lasers.size(); i++) {
@@ -155,7 +151,6 @@ void Model::update_hero(){
     }
 }
 
-// changes which hero shoots randomly
 void Model::who_shoots(){
     std::srand(std::time(0));
     for (size_t i = 0; i < hero_lasers.size(); i++) {
@@ -169,7 +164,6 @@ void Model::who_shoots(){
     }
 }
 
-// makes the hero shoot
 void Model::hero_shoot() {
     for (size_t i = 0; i < hero_lasers.size(); i++) {
         if(!hero_lasers[i].live_){
