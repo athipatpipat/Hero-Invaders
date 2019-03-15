@@ -9,7 +9,7 @@
 
 using Block = ge211::Rectangle;
 
-extern ge211::Color const player_color, barrier_color, laser_color;
+extern ge211::Color const barrier_color, laser_color, player_color;
 
 struct Ui : ge211::Abstract_game
 {
