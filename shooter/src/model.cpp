@@ -85,6 +85,9 @@ void Model::move_player_left() {
 }
 
 void Model::update(){
+    if(player_lives == 0){
+        game_over = true;
+    }
     if(!laser_.live_)
         return;
     else{
@@ -198,9 +201,6 @@ void Model::hero_shoot() {
             hero_lasers[i] = Laser(heroes_[i], geometry_);
             hero_lasers[i].live_ = true;
             player_lives--;
-            if(player_lives == 0){
-                game_over = true;
-            }
             return;
         }
         hero_lasers[i] = hero_lasers[i].next();
