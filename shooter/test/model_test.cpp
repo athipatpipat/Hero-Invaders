@@ -4,22 +4,24 @@
 TEST_CASE("Hero moves faster when one hero dies"){
     Geometry geometry;
     Model m(geometry);
-    Hero hero1{5,5,10,10};
-
+    Hero hero1;
+    hero1.x = 300;
+    hero1.y = 300;
+    hero1.width = 50;
+    hero1.height = 50;
+    hero1.live = true;
+    m.hero_velocity = 1;
     m.heroes_.push_back(hero1);
-
     CHECK(m.hero_velocity == 1);
-
     Laser laser1(m.player_, geometry);
-    laser1.live_ == true;
-    laser1.center_.x = 5;
-    laser1.center_.y = 5;
+    laser1.live_ = true;
+    laser1.center_.x = 300;
+    laser1.center_.y = 360;
     laser1.bullet_ = {5,5};
+    CHECK(laser1.hits_hero(hero1));
+    CHECK(laser1.destroy_hero(m.heroes_, m.score, m.hero_velocity));
     m.update();
     CHECK(m.hero_velocity == 1.1 );
-
-
-
 }
 
 TEST_CASE("Player loses one life when hit"){
@@ -60,17 +62,22 @@ TEST_CASE("Different types of hero give different points when killed "){
     Geometry geometry;
     Model m(geometry);
     Laser laser(m.player_, geometry);
-    laser.live_ = true;
+    m.player_lives = 2;
+    m.score = 0;
+    m.hero_velocity = 1;
     Hero hero1;
     hero1.type = 1;
-    hero1.x = 50;
-    hero1.y = 20;
-    laser.center_.x = 50;
-    laser.center_.y = 20;
+    hero1.x = 300;
+    hero1.y = 300;
+    hero1.width = 20;
+    hero1.height = 20;
+    hero1.live = true;
+    m.heroes_.push_back(hero1);
+    laser.center_.x = 300;
+    laser.center_.y = 360;
+    laser.live_ = true;
     m.update();
     CHECK(m.score==30);
-
-
 }
 
 
