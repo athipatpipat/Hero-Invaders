@@ -1,5 +1,6 @@
 #include "model.h"
 #include <catch.h>
+#include <math.h>
 
 TEST_CASE("Hero moves faster when one hero dies"){
     Geometry geometry;
@@ -22,7 +23,9 @@ TEST_CASE("Hero moves faster when one hero dies"){
     CHECK(laser1.hits_hero(hero1));
     CHECK(laser1.destroy_hero(m.heroes_, m.score, m.hero_velocity));
     m.update();
-    CHECK(m.hero_velocity == 1.1 );
+
+    //Float cannot be compared using ==
+    CHECK(std::fabs(m.hero_velocity - 1.1) < std::numeric_limits<float>::epsilon());
 
 }
 
