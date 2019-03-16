@@ -86,7 +86,20 @@ TEST_CASE("Different types of hero give different points when killed "){
 
 }
 
-
 TEST_CASE("Barrier dies when hit by both player and hero"){
+    Geometry geometry;
+    Model m(geometry);
 
+    m.laser_.center_.x = 300;
+    m.laser_.center_.y = 360;
+    m.launch();
+    m.barriers_.clear();
+    Block barrier1;
+    barrier1.x = 300;
+    barrier1.y = 300;
+    m.barriers_.push_back(barrier1);
+    CHECK(m.barriers_.size() == 1);
+    CHECK(m.laser_.destroy_barrier(m.barriers_));
+    m.update();
+    CHECK(m.barriers_.size() == 0);
 }
