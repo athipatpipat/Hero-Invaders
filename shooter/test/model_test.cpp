@@ -117,8 +117,8 @@ TEST_CASE("Different types of hero give different points when killed "){
     
 }
 
-//Barrier gets smaller when it is hit by laser from player and hero
-TEST_CASE("Barrier dies when hit by both player and hero"){
+//Barrier gets smaller when it is hit by laser 
+TEST_CASE("Barrier dies when hit by laser"){
     Geometry geometry;
     Model m(geometry);
 
