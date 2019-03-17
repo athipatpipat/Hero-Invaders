@@ -117,7 +117,7 @@ TEST_CASE("Different types of hero give different points when killed "){
     
 }
 
-//Barrier gets smaller when it is hit by laser 
+//Barrier gets smaller when it is hit by laser
 TEST_CASE("Barrier dies when hit by laser"){
     Geometry geometry;
     Model m(geometry);
@@ -136,3 +136,50 @@ TEST_CASE("Barrier dies when hit by laser"){
     CHECK(m.barriers_.size() == 0);
 }
 
+TEST_CASE("Player's laser resets when hits top"){
+    Geometry geometry;
+    Model m(geometry);
+
+    m.laser_.live_ = true;
+    m.laser_.center_.x = 500;
+    m.laser_.center_.y = 1;
+    m.laser_.bullet_ = {5,5};
+    CHECK(m.laser_.live_);
+    m.update();
+    CHECK_FALSE(m.laser_.live_);
+}
+
+TEST_CASE("Hits bottom works"){
+    Geometry geometry;
+    Model m(geometry);
+
+    Hero hero;
+    hero.x = 10;
+    hero.y = 10;
+    hero.width = 5;
+    hero.height = 5;
+    hero.type = 1;
+    hero.live = true;
+    hero.shooting = false;
+    m.heroes_.clear();
+    m.heroes_.push_back(hero);
+    m.laser_.live_ = true;
+    m.laser_.center_.x = 500;
+    m.laser_.center_.y = 768;
+    m.laser_.bullet_ = {5,5};
+    m.hero_lasers.clear();
+    m.hero_lasers.push_back(m.laser_);
+    CHECK(m.laser_.hits_bottom(geometry));
+}
+
+TEST_CASE("Laser follows player when not live"){
+    Geometry geometry;
+    Model m(geometry);
+
+    m.laser_.live_ = false;
+    m.laser_.center_.x = m.player_.x;
+    m.laser_.center_.y = m.player_.y;
+    Laser lasercopy = m.laser_;
+    m.move_player_right();
+    CHECK(m.laser_.center_.x == (lasercopy.center_.x + 20));
+}
