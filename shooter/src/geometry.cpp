@@ -49,7 +49,7 @@ Dimensions Geometry::hero_dims() const noexcept
                             hero_depth - top_margin};
     int width  = div_w_spacing(field.width, hero_cols, hero_spacing.width);
     int height = div_w_spacing(field.height, hero_rows, hero_spacing.height);
-    return {width - 5 , height - 4};
+    return {static_cast<float>(width - 5) , static_cast<float>(height - 4)};
 }
 
 

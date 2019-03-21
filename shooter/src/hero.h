@@ -21,7 +21,7 @@ public:
     //Top left position of hero
     ge211::Position top_left() const
     {
-        return {x,y+height};
+        return {static_cast<int>(x),static_cast<int>(y+height)};
     }
 
     //X coordinate of hero's center

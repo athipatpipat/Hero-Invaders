@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.3)
 project(shooter CXX)
 include(.eecs211/cmake/CMakeLists.txt)
-set(CMAKE_C_COMPILER C:/MinGW/bin/gcc.exe)
-set(CMAKE_CXX_COMPILER C:/MinGW/bin/g++.exe)
 
 # Defines a variable to stand for the two .cpp files that implement
 # the model.
